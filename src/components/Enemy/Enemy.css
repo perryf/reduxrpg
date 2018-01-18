@@ -1,0 +1,24 @@
+.enemy-container {
+}
+
+.enemy-image {
+  width: 100px;
+  height: 100px;
+  background: darkred;
+  border: 1px solid black;
+  border-radius: 100px;
+  margin: 10px;
+}
+
+.enemy-container h3 {
+  text-align: center;
+  margin: 10px;
+}
+
+.enemy-health {
+  height: 12px;
+  background: red;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
