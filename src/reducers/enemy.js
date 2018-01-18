@@ -1,12 +1,14 @@
-const initialState = {
-  level: 1,
-  maxHealth: 100,
-  health: 100
-}
+const data = require('../enemyData.json')
 
-const enemy = (state = initialState, action) => {
+let initialEnemy = data[0]
+initialEnemy.health = initialEnemy.stats.maxHealth
+console.log(initialEnemy)
+
+const enemy = (state = initialEnemy, action) => {
   switch (action.type) {
     case 'PLAYER_ATTACKS':
+      console.log(state.health)
+      console.log(action.damage)
       if (state.health >= 0) {
         return {
           ...state,
@@ -15,16 +17,8 @@ const enemy = (state = initialState, action) => {
       } else {
         return state
       }
-    case 'ENEMY_DIES':
-      return Object.assign({}, {
-        level: state.level + 1,
-        maxHealth: state.maxHealth + 20
-      })
-    case 'ENEMY_RECOVERS':
-      return {
-        ...state,
-        health: state.maxHealth
-      }
+    case 'NEXT_ENEMY':
+      return Object.assign({}, data[action.level])
     default:
       return state
   }

@@ -1,14 +1,19 @@
 import {connect} from 'react-redux'
 import Enemy from '../components/Enemy/Enemy'
-import {enemyDies, enemyRecovers} from '../actions'
+import {nextEnemy, nextLevel} from '../actions'
 
 const mapStateToProps = (state) => ({
-  health: state.enemy.health
+  name: state.enemy.name,
+  img: state.enemy.img,
+  health: state.enemy.health,
+  attack: state.enemy.moves.attack,
+  maxHealth: state.enemy.stats.maxHealth,
+  level: state.level
 })
 
 const mapDispatchToProps = {
-  enemyDies: enemyDies,
-  enemyRecovers: enemyRecovers
+  nextEnemy: nextEnemy,
+  nextLevel: nextLevel
 }
 
 const EnemyWrapper = connect(

@@ -1,12 +1,12 @@
 export const playerAttacks = (strength) => ({
   type: 'PLAYER_ATTACKS',
-  damage: 10 + Math.floor((strength * 10) * Math.random())
+  damage: 2 + Math.floor((strength * 2) * Math.random())
 })
 
-export const enemyDies = () => ({
-  type: 'ENEMY_DIES'
+export const nextEnemy = (level) => ({
+  type: 'NEXT_ENEMY'
 })
 
-export const enemyRecovers = () => ({
-  type: 'ENEMY_RECOVERS'
+export const nextLevel = () => ({
+  type: 'NEXT_LEVEL'
 })
