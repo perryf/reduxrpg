@@ -2,7 +2,6 @@
   {
     "name": "Goomba",
     "img": "https://www.mariowiki.com/images/archive/2/21/20160508194739%21Goomba2.gif",
-    "health": 20,
     "moves": {
       "attack": 10
     },
@@ -16,9 +15,8 @@
   {
     "name": "Pikachu",
     "img": "https://vignette.wikia.nocookie.net/pokemon/images/c/c6/Pikachu_F_BW.gif/revision/latest?cb=20111203122227",
-    "health": 25,
     "moves": {
-      "attack": 5,
+      "attack": 10,
       "thunder-bolt": 20
     },
     "stats": {
@@ -26,6 +24,34 @@
       "strength": 1,
       "defense": 1,
       "magic": 3
+    }
+  },
+  {
+    "name": "Crabmeat",
+    "img": "https://vignette.wikia.nocookie.net/sonic/images/4/42/Ganigani.gif/revision/latest?cb=20100725214739",
+    "moves": {
+      "attack": 10,
+      "energyball": 20
+    },
+    "stats": {
+      "maxHealth": 30,
+      "strength": 2,
+      "defense": 2,
+      "magic": 1
+    }
+  },
+  {
+    "name": "Metaur C-15",
+    "img": "https://vignette.wikia.nocookie.net/megaman/images/1/1c/Mmxmetsprite.png/revision/latest?cb=20060906033716",
+    "moves": {
+      "attack": 10,
+      "special-attack": 20
+    },
+    "stats": {
+      "maxHealth": 32,
+      "strength": 2,
+      "defense": 3,
+      "magic": 2
     }
   }
 ]

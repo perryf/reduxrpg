@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 import player from './player'
 import enemy from './enemy'
-import level from './level'
+import level from './levelStats'
 
 const reducer = combineReducers({
   player,

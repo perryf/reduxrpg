@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import store from '../../store'
 import './Enemy.css'
 
 class Enemy extends Component {
@@ -9,19 +10,25 @@ class Enemy extends Component {
   componentDidUpdate() {
     if (this.props.health <= 0) {
       console.log('Im dead!')
-      this.props.nextLevel()
       this.props.nextEnemy()
+    } else {
     }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    this.displayDamage(this.props.health - store.getState().enemy.health)
+  }
+
+  displayDamage(dmg) {
+    return dmg
   }
 
   render () {
     let percentage = 100 / this.props.maxHealth
-    console.log(percentage)
-    console.log(this.props.health)
     return(
       <div className="enemy-container">
         <img src={this.props.img} className="enemy-image" />
-        <h3>Enemy</h3>
+        <h3>{this.props.name}</h3>
         <div className="health-bar">
           <div
             className="enemy-health"

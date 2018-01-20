@@ -7,13 +7,11 @@ const mapStateToProps = (state) => ({
   img: state.enemy.img,
   health: state.enemy.health,
   attack: state.enemy.moves.attack,
-  maxHealth: state.enemy.stats.maxHealth,
-  level: state.level
+  maxHealth: state.enemy.stats.maxHealth
 })
 
 const mapDispatchToProps = {
-  nextEnemy: nextEnemy,
-  nextLevel: nextLevel
+  nextEnemy: nextEnemy
 }
 
 const EnemyWrapper = connect(
