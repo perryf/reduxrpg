@@ -9,10 +9,8 @@ class Enemy extends Component {
 
   componentDidUpdate() {
     if (this.props.health <= 0) {
-      console.log('Im dead!')
       this.props.nextEnemy()
-    } else {
-    }
+    } 
   }
 
   componentWillUpdate(nextProps, nextState) {

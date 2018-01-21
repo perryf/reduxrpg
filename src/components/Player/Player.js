@@ -2,6 +2,7 @@ import React from 'react'
 import './Player.css'
 
 const Player = ({name, img, health, strength, defense, magic, maxHealth, playerAttacks}) => {
+  let percentage = 100 / maxHealth
   return(
     <div className="player-container">
       <img className="player-image" src={img} />
@@ -9,7 +10,7 @@ const Player = ({name, img, health, strength, defense, magic, maxHealth, playerA
       <div className="health-bar">
         <div
           className="player-health"
-          style={{width: health + "px"}}
+          style={{width: health*percentage + "px"}}
         ></div>
         <p className="stats">Strength: {strength}</p>
         <p className="stats">Defense: {defense}</p>

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux'
-import IntroScreen from '../components/IntroScreen/IntroScreen'
+import FightScreen from '../components/FightScreen/FightScreen'
 import {introSubmit} from '../actions'
 
 const mapStateToProps = (state) => ({
@@ -7,12 +7,11 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  introSubmit
 }
 
-const IntroScreenWrapper = connect(
+const FightScreenWrapper = connect(
   mapStateToProps,
   mapDispatchToProps
-)(IntroScreen)
+)(FightScreen)
 
-export default IntroScreenWrapper
+export default FightScreenWrapper

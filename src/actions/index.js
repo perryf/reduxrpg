@@ -3,9 +3,24 @@ export const playerAttacks = (strength, attack, defense) => ({
   damage: Math.ceil(((strength * attack) * Math.random()) / defense)
 })
 
-export const playerHeals = () => {
+export const playerSpecials = (magic, attack) => ({
+  type: 'PLAYER_SPECIALS',
+  damage: Math.ceil((magic * attack) * Math.random())
+})
+
+export const playerHeals = () => ({
   type: 'PLAYER_HEALS'
-}
+})
+
+export const enemyAttacks = (strength, attack, defense) => ({
+  type: 'ENEMY_ATTACKS',
+  damage: Math.ceil(((strength * attack) * Math.random()) / defense)
+})
+
+export const enemySpecials = (magic, attack) => ({
+  type: 'ENEMY_SPECIALS',
+  damage: Math.ceil((magic * attack) * Math.random())
+})
 
 export const nextEnemy = (level) => ({
   type: 'NEXT_ENEMY'

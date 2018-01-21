@@ -13,7 +13,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  playerAttacks: playerAttacks
+  playerAttacks
 }
 
 const PlayerWrapper = connect(

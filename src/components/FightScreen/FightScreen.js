@@ -5,15 +5,20 @@ import PlayerWrapper from '../../containers/PlayerWrapper'
 import EnemyWrapper from '../../containers/EnemyWrapper'
 import LevelStatsWrapper from '../../containers/LevelStatsWrapper'
 
-const FightScreen = () => {
+const FightScreen = ({playerName}) => {
+  console.log(playerName)
   return(
     <div className="fight-screen">
-      <IntroScreenWrapper />
-      <div className="combat">
-        <PlayerWrapper />
-        <EnemyWrapper />
-      </div>
-      <LevelStatsWrapper />
+      {!playerName ?
+        <IntroScreenWrapper /> :
+        <div className="main-game">
+          <div className="combat">
+            <PlayerWrapper />
+            <EnemyWrapper />
+          </div>
+          <LevelStatsWrapper />
+        </div>
+      }
     </div>
   )
 }

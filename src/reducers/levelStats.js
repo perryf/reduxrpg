@@ -10,7 +10,21 @@ const levelStats = (state = initialState, action) => {
         ...state,
         enemyDmgTaken: action.damage
       }
+    case 'PLAYER_SPECIALS':
+      return {
+        ...state,
+        enemyDmgTaken: action.damage
+      }
+    case 'PLAYER_HEALS':
+      return {
+        ...state
+      }
     case 'ENEMY_ATTACKS':
+      return {
+        ...state,
+        playerDmgTaken: action.damage
+      }
+    case 'ENEMY_SPECIALS':
       return {
         ...state,
         playerDmgTaken: action.damage

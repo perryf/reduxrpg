@@ -10,9 +10,13 @@ class IntroScreen extends Component {
   render () {
     return (
       <div>
+        <h3>Welcome to Redux RPG!</h3>
+        <p>Choose your name and a stat to increase</p>
         <form>
-          <label>Name</label>
-          <input type="text" name="playerName"/>
+          <div>
+            <label>Name</label>
+            <input type="text" name="playerName"/>
+          </div>
           <div>
             <label>Strength</label>
             <input type="radio" name="skills" value="strength"/>

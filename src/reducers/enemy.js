@@ -15,6 +15,16 @@ const enemy = (state = initialEnemy, action) => {
       } else {
         return state
       }
+    case 'PLAYER_SPECIALS':
+      console.log(action.damage)
+      if (state.health >= 0) {
+        return {
+          ...state,
+          health: state.health - action.damage
+        }
+      } else {
+        return state
+      }
     case 'NEXT_ENEMY':
       counter += 1
       if (data[counter]) {

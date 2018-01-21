@@ -1,9 +1,10 @@
 const initialState = {
-  "name": "Perry",
+  "name": "",
   "img": "https://www.mariowiki.com/images/e/e3/Frogmario.gif",
   "health": 100,
   "moves": {
-    "attack": 10
+    "attack": 10,
+    "special": 20,
   },
   "stats": {
     "maxHealth": 100,
@@ -16,6 +17,11 @@ const initialState = {
 const player = (state = initialState, action) => {
   switch (action.type) {
     case 'ENEMY_ATTACKS':
+      return {
+        ...state,
+        health: state.health - action.damage
+      }
+    case 'ENEMY_SPECIALS':
       return {
         ...state,
         health: state.health - action.damage

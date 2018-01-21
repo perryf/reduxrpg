@@ -11,7 +11,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  nextEnemy: nextEnemy
+  nextEnemy
 }
 
 const EnemyWrapper = connect(

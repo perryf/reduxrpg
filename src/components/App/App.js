@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import './App.css'
 import Header from '../Header/Header'
-import FightScreen from '../FightScreen/FightScreen'
+import FightScreenWrapper from '../../containers/FightScreenWrapper'
 
 class App extends Component {
   render() {
     return (
       <div>
         <Header />
-        <FightScreen />
+        <FightScreenWrapper />
       </div>
     )
   }
