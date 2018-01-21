@@ -10,14 +10,18 @@ const enemy = (state = initialEnemy, action) => {
       if (state.health >= 0) {
         return {
           ...state,
-          health: state.health - (action.damage / (0.5 * state.stats.defense))
+          health: state.health - action.damage
         }
       } else {
         return state
       }
     case 'NEXT_ENEMY':
       counter += 1
-      return Object.assign({}, data[counter], {health: data[counter].stats.maxHealth})
+      if (data[counter]) {
+        return Object.assign({}, data[counter], {health: data[counter].stats.maxHealth})
+      } else {
+        return state
+      }
     default:
       return state
   }

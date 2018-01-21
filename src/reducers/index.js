@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux'
 import player from './player'
 import enemy from './enemy'
-import level from './levelStats'
+import levelStats from './levelStats'
 
 const reducer = combineReducers({
   player,
   enemy,
-  level
+  levelStats
 })
 
 export default reducer

@@ -1,13 +1,30 @@
-const initialLevel = 0
+const initialState = {
+  playerDmgTaken: 0,
+  enemyDmgTaken: 0,
+}
 
-const level = (state = initialLevel, action) => {
+const levelStats = (state = initialState, action) => {
   switch (action.type) {
-    case 'NEXT_LEVEL':
-      return state += 1
+    case 'PLAYER_ATTACKS':
+      return {
+        ...state,
+        enemyDmgTaken: action.damage
+      }
+    case 'ENEMY_ATTACKS':
+      return {
+        ...state,
+        playerDmgTaken: action.damage
+      }
+    case 'NEXT_ENEMY':
+      return {
+        ...state,
+        playerDmgTaken: 0,
+        enemyDmgTaken: 0,
+      }
     default:
       return state
   }
 
 }
 
-export default level
+export default levelStats

@@ -4,10 +4,8 @@
 .player-image {
   width: 100px;
   height: 100px;
-  background: lightblue;
-  border: 1px solid black;
-  border-radius: 100px;
-  margin: 10px;
+  margin: 0;
+  padding: 0;
 }
 
 .player-container h3 {
@@ -25,4 +23,9 @@
 
 .attack {
   margin: 20px 0;
+}
+
+.stats {
+  margin: 0;
+  padding: 0;
 }

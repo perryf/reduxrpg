@@ -53,5 +53,33 @@
       "defense": 3,
       "magic": 2
     }
+  },
+  {
+    "name": "Poppy Bros Sr",
+    "img": "https://wikirby.com/w/images/7/72/KDLPoppyBrosSr.png",
+    "moves": {
+      "attack": 10,
+      "bomb-attack": 20
+    },
+    "stats": {
+      "maxHealth": 40,
+      "strength": 3,
+      "defense": 2,
+      "magic": 3
+    }
+  },
+  {
+    "name": "Baron of Hell",
+    "img": "https://vignette.wikia.nocookie.net/vsbattles/images/c/cf/DOOM_Baron_of_Hell.gif/revision/latest?cb=20170916201714",
+    "moves": {
+      "attack": 10,
+      "plasma-ball": 20
+    },
+    "stats": {
+      "maxHealth": 80,
+      "strength": 4,
+      "defense": 2,
+      "magic": 3
+    }
   }
 ]

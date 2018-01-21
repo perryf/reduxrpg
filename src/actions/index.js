@@ -1,12 +1,20 @@
-export const playerAttacks = (strength) => ({
+export const playerAttacks = (strength, attack, defense) => ({
   type: 'PLAYER_ATTACKS',
-  damage: 2 + Math.floor((strength * 2) * Math.random())
+  damage: Math.ceil(((strength * attack) * Math.random()) / defense)
 })
+
+export const playerHeals = () => {
+  type: 'PLAYER_HEALS'
+}
 
 export const nextEnemy = (level) => ({
   type: 'NEXT_ENEMY'
 })
 
-export const nextLevel = () => ({
-  type: 'NEXT_LEVEL'
+export const introSubmit = (name, stat) => ({
+  type: 'INTRO_SUBMIT',
+  payload: {
+    name: name,
+    statIncrease: stat
+  }
 })
