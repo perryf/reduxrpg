@@ -2,6 +2,7 @@ const initialState = {
   "name": "",
   "img": "https://www.mariowiki.com/images/e/e3/Frogmario.gif",
   "health": 100,
+  "level": 0,
   "moves": {
     "attack": 10,
     "special": 20,
@@ -39,12 +40,13 @@ const player = (state = initialState, action) => {
         }
       }
     case 'INTRO_SUBMIT':
-      let stat = action.payload.statIncrease
-      if (action.payload.statIncrease === 'maxHealth') {
+      var stat = action.payload.statIncrease
+      if (stat === 'maxHealth') {
         return {
           ...state,
           name: action.payload.name,
           health: state.health + 10,
+          level: state.level + 1,
           stats: {
             ...state.stats,
             [stat]: state.stats[stat] + 10
@@ -54,12 +56,36 @@ const player = (state = initialState, action) => {
         return {
           ...state,
           name: action.payload.name,
+          level: state.level + 1,
           stats: {
             ...state.stats,
             [stat]: state.stats[stat] + 1
           }
         }
       }
+    case 'LEVEL_UP':
+      console.log('hi')
+    var stat = action.statIncrease
+    if (stat === 'maxHealth') {
+      return {
+        ...state,
+        health: state.health + 10,
+        level: state.level + 1,
+        stats: {
+          ...state.stats,
+          [stat]: state.stats[stat] + 10
+        }
+      }
+    } else {
+      return {
+        ...state,
+        level: state.level + 1,
+        stats: {
+          ...state.stats,
+          [stat]: state.stats[stat] + 1
+        }
+      }
+    }
     default:
       return state
   }

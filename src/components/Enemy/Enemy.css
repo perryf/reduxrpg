@@ -1,4 +1,6 @@
 .enemy-container {
+  width: 100px;
+  margin: 10px;
 }
 
 .enemy-image {

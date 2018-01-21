@@ -6,7 +6,6 @@ import EnemyWrapper from '../../containers/EnemyWrapper'
 import LevelStatsWrapper from '../../containers/LevelStatsWrapper'
 
 const FightScreen = ({playerName}) => {
-  console.log(playerName)
   return(
     <div className="fight-screen">
       {!playerName ?
@@ -14,9 +13,9 @@ const FightScreen = ({playerName}) => {
         <div className="main-game">
           <div className="combat">
             <PlayerWrapper />
+            <LevelStatsWrapper />
             <EnemyWrapper />
           </div>
-          <LevelStatsWrapper />
         </div>
       }
     </div>

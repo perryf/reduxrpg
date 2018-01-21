@@ -7,32 +7,23 @@ class Enemy extends Component {
     super(props)
   }
 
-  componentDidUpdate() {
-    if (this.props.health <= 0) {
-      this.props.nextEnemy()
-    } 
-  }
-
-  componentWillUpdate(nextProps, nextState) {
-    this.displayDamage(this.props.health - store.getState().enemy.health)
-  }
-
-  displayDamage(dmg) {
-    return dmg
-  }
-
   render () {
     let percentage = 100 / this.props.maxHealth
-    return(
+    return (
       <div className="enemy-container">
-        <img src={this.props.img} className="enemy-image" />
-        <h3>{this.props.name}</h3>
-        <div className="health-bar">
-          <div
-            className="enemy-health"
-            style={{width: this.props.health*percentage + "px"}}
-          ></div>
-        </div>
+        {this.props.health > 0 ?
+          <div className="enemy-info">
+            <img src={this.props.img} className="enemy-image" />
+            <h3>{this.props.name}</h3>
+            <div className="health-bar">
+              <div
+                className="enemy-health"
+                style={{width: this.props.health*percentage + "px"}}
+              ></div>
+            </div>
+          </div> :
+          <div className="enemy-container"></div>
+        }
       </div>
     )
   }

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
-import './IntroScreen.css'
+import './LevelUp.css'
 
-class IntroScreen extends Component {
+class LevelUp extends Component {
   constructor(props) {
     super(props)
   }
@@ -9,13 +9,9 @@ class IntroScreen extends Component {
   render () {
     return (
       <div>
-        <h3>Welcome to Redux RPG!</h3>
-        <p>Choose your name and a stat to increase</p>
+        <h3>Level Up!</h3>
+        <p>Choose a Skill to Increase!</p>
         <form>
-          <div>
-            <label>Name</label>
-            <input type="text" name="playerName"/>
-          </div>
           <div>
             <label>Strength</label>
             <input type="radio" name="skills" value="strength"/>
@@ -34,8 +30,11 @@ class IntroScreen extends Component {
           </div>
           <input
             type="button"
-            value="submit"
-            onClick={((e) => this.props.introSubmit(e.target.form.playerName.value, e.target.form.skills.value) )}
+            value="Next Enemy"
+            onClick={((e) => {
+              this.props.levelUp(e.target.form.skills.value)
+              this.props.nextEnemy()
+            })}
           />
         </form>
       </div>
@@ -43,4 +42,4 @@ class IntroScreen extends Component {
   }
 }
 
-export default IntroScreen
+export default LevelUp
