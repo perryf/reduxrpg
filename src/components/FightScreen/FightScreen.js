@@ -5,10 +5,10 @@ import PlayerWrapper from '../../containers/PlayerWrapper'
 import EnemyWrapper from '../../containers/EnemyWrapper'
 import LevelStatsWrapper from '../../containers/LevelStatsWrapper'
 
-const FightScreen = ({playerName}) => {
+const FightScreen = ({isPlaying}) => {
   return(
     <div className="fight-screen">
-      {!playerName ?
+      {isPlaying ?
         <IntroScreenWrapper /> :
         <div className="main-game">
           <div className="combat">

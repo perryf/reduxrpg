@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import LevelStats from '../components/LevelStats/LevelStats'
-import {playerAttacks, playerHeals, playerSpecials, enemyAttacks, nextEnemy} from '../actions'
+import {playerAttacks, playerHeals, playerSpecials, enemyAttacks, nextEnemy, needsLevelUp} from '../actions'
 
 const mapStateToProps = (state) => ({
   playerName: state.player.name,
@@ -19,6 +19,7 @@ const mapStateToProps = (state) => ({
   enemyMaxHealth: state.enemy.stats.maxHealth,
   enemyDefense: state.enemy.stats.defense,
   enemyMagic: state.enemy.stats.magic,
+  isLevelingUp: state.levelStats.isLevelingUp
 })
 
 const mapDispatchToProps = {
@@ -26,7 +27,8 @@ const mapDispatchToProps = {
   playerHeals,
   playerSpecials,
   enemyAttacks,
-  nextEnemy
+  nextEnemy,
+  needsLevelUp
 }
 
 const EnemyWrapper = connect(

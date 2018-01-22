@@ -64,7 +64,6 @@ const player = (state = initialState, action) => {
         }
       }
     case 'LEVEL_UP':
-      console.log('hi')
     var stat = action.statIncrease
     if (stat === 'maxHealth') {
       return {

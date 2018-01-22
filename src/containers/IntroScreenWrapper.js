@@ -2,8 +2,7 @@ import {connect} from 'react-redux'
 import IntroScreen from '../components/IntroScreen/IntroScreen'
 import {introSubmit} from '../actions'
 
-const mapStateToProps = (state) => ({
-  playerName: state.player.name
+const mapStateToProps = () => ({
 })
 
 const mapDispatchToProps = {

@@ -1,6 +1,8 @@
 const initialState = {
   playerDmgTaken: 0,
   enemyDmgTaken: 0,
+  isLevelingUp: false,
+  isPlaying: false
 }
 
 const levelStats = (state = initialState, action) => {
@@ -34,6 +36,21 @@ const levelStats = (state = initialState, action) => {
         ...state,
         playerDmgTaken: 0,
         enemyDmgTaken: 0,
+      }
+    case 'INTRO_SUBMIT':
+      return {
+        ...state,
+        isPlaying: true
+      }
+    case 'NEEDS_LEVEL_UP':
+      return {
+        ...state,
+        isLevelingUp: true
+      }
+    case 'LEVEL_UP':
+      return {
+        ...state,
+        isLevelingUp: false
       }
     default:
       return state

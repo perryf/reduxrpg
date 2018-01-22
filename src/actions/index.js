@@ -34,6 +34,10 @@ export const introSubmit = (name, stat) => ({
   }
 })
 
+export const needsLevelUp = () => ({
+  type: 'NEEDS_LEVEL_UP'
+})
+
 export const levelUp = (stat) => ({
   type: 'LEVEL_UP',
   statIncrease: stat

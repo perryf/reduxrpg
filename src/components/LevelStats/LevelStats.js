@@ -7,6 +7,14 @@ class LevelStats extends Component {
     super(props)
   }
 
+  componentDidUpdate() {
+    console.log(this.props.enemyHealth)
+    if (this.props.enemyHealth <= 0) {
+      console.log('called!')
+      this.props.needsLevelUp()
+    }
+  }
+
   handleAttack() {
     this.props.playerAttacks(
       this.props.playerStrength,
@@ -48,7 +56,7 @@ class LevelStats extends Component {
       <p>{this.props.playerName} Took {this.props.playerDmgTaken} Damage!</p> : <p></p>
     let enemyFallen = this.props.enemyHealth <= 0 ?
       <p>{this.props.enemyName} has fallen!</p> : ""
-    let nextButton = this.props.enemyHealth <= 0 ?
+    let nextButton = this.props.isLevelingUp ?
       <LevelUpWrapper /> : ""
     return (
       <div>

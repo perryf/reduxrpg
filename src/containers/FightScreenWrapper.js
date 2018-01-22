@@ -3,7 +3,7 @@ import FightScreen from '../components/FightScreen/FightScreen'
 import {introSubmit} from '../actions'
 
 const mapStateToProps = (state) => ({
-  playerName: state.player.name
+  isPlaying: state.levelStats.isPlaying
 })
 
 const mapDispatchToProps = {
