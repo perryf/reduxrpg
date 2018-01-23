@@ -8,9 +8,7 @@ class LevelStats extends Component {
   }
 
   componentDidUpdate() {
-    console.log(this.props.enemyHealth)
     if (this.props.enemyHealth <= 0) {
-      console.log('called!')
       this.props.needsLevelUp()
     }
   }
@@ -29,7 +27,10 @@ class LevelStats extends Component {
   }
 
   handleHeal() {
-    this.props.playerHeals()
+    this.props.playerHeals(
+      this.props.playerMagic,
+      this.props.playerMaxHealth
+    )
     this.props.enemyAttacks(
       this.props.enemyStrength,
       this.props.enemyAttack,
@@ -50,10 +51,13 @@ class LevelStats extends Component {
   }
 
   render() {
+    console.log(this.props.playerMana)
     let enemyDmgTaken = this.props.enemyDmgTaken ?
       <p>{this.props.enemyName} Took {this.props.enemyDmgTaken} Damage!</p> : <p></p>
     let playerDmgTaken = this.props.playerDmgTaken ?
       <p>{this.props.playerName} Took {this.props.playerDmgTaken} Damage!</p> : <p></p>
+    let playerHealAmt = this.props.playerHealAmt ?
+      <p>{this.props.playerName} Healed {this.props.playerHealAmt} Health!</p> : <p></p>
     let enemyFallen = this.props.enemyHealth <= 0 ?
       <p>{this.props.enemyName} has fallen!</p> : ""
     let nextButton = this.props.isLevelingUp ?
@@ -66,17 +70,24 @@ class LevelStats extends Component {
               className="action-button"
               onClick={() => this.handleAttack()}
             >Attack!</button>
-            <button
-              className="action-button"
-              onClick={() => this.handleSpecial()}
-            >Special Attack!</button>
-            <button
-              className="action-button"
-              onClick={() => this.handleHeal()}
-            >Heal!</button>
+            {this.props.playerMana > 0 ?
+              <button
+                className="action-button"
+                onClick={() => this.handleSpecial()}
+              >Special Attack!</button> :
+              <button className="no-mana">Out of Mana!</button>
+            }
+            {this.props.playerMana > 0 ?
+              <button
+                className="action-button"
+                onClick={() => this.handleHeal()}
+              >Heal!</button> :
+              <button className="no-mana">Out of Mana!</button>
+            }
           </div> :
           <div></div>
         }
+        {playerHealAmt}
         {playerDmgTaken}
         {enemyDmgTaken}
         {enemyFallen}

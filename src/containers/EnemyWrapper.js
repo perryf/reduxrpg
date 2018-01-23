@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import Enemy from '../components/Enemy/Enemy'
-import {nextEnemy, nextLevel} from '../actions'
+import {nextEnemy} from '../actions'
 
 const mapStateToProps = (state) => ({
   name: state.enemy.name,

@@ -1,5 +1,6 @@
 const initialState = {
   playerDmgTaken: 0,
+  playerHealAmt: 0,
   enemyDmgTaken: 0,
   isLevelingUp: false,
   isPlaying: false
@@ -10,16 +11,20 @@ const levelStats = (state = initialState, action) => {
     case 'PLAYER_ATTACKS':
       return {
         ...state,
-        enemyDmgTaken: action.damage
+        enemyDmgTaken: action.damage,
+        playerHealAmt: 0
       }
     case 'PLAYER_SPECIALS':
       return {
         ...state,
-        enemyDmgTaken: action.damage
+        enemyDmgTaken: action.damage,
+        playerHealAmt: 0
       }
     case 'PLAYER_HEALS':
       return {
-        ...state
+        ...state,
+        playerHealAmt: action.healAmt,
+        enemyDmgTaken: 0
       }
     case 'ENEMY_ATTACKS':
       return {
@@ -35,6 +40,7 @@ const levelStats = (state = initialState, action) => {
       return {
         ...state,
         playerDmgTaken: 0,
+        playerHealAmt: 0,
         enemyDmgTaken: 0,
       }
     case 'INTRO_SUBMIT':

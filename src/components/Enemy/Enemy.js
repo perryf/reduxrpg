@@ -1,5 +1,4 @@
 import React, {Component} from 'react'
-import store from '../../store'
 import './Enemy.css'
 
 class Enemy extends Component {
@@ -13,7 +12,7 @@ class Enemy extends Component {
       <div className="enemy-container">
         {this.props.health > 0 ?
           <div className="enemy-info">
-            <img src={this.props.img} className="enemy-image" />
+            <img src={this.props.img} alt={this.props.name} className="enemy-image" />
             <h3>{this.props.name}</h3>
             <div className="health-bar">
               <div

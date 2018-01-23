@@ -8,8 +8,9 @@ export const playerSpecials = (magic, attack) => ({
   damage: Math.ceil((magic * attack) * Math.random())
 })
 
-export const playerHeals = () => ({
-  type: 'PLAYER_HEALS'
+export const playerHeals = (magic, maxHealth) => ({
+  type: 'PLAYER_HEALS',
+  healAmt: Math.ceil((magic * (maxHealth * 0.2)) * Math.random())
 })
 
 export const enemyAttacks = (strength, attack, defense) => ({

@@ -6,16 +6,14 @@ import EnemyWrapper from '../../containers/EnemyWrapper'
 import LevelStatsWrapper from '../../containers/LevelStatsWrapper'
 
 const FightScreen = ({isPlaying}) => {
-  return(
+  return (
     <div className="fight-screen">
-      {isPlaying ?
+      {!isPlaying ?
         <IntroScreenWrapper /> :
-        <div className="main-game">
-          <div className="combat">
-            <PlayerWrapper />
-            <LevelStatsWrapper />
-            <EnemyWrapper />
-          </div>
+        <div className="combat">
+          <PlayerWrapper />
+          <LevelStatsWrapper />
+          <EnemyWrapper />
         </div>
       }
     </div>

@@ -13,9 +13,21 @@
   margin: 10px;
 }
 
+.status-bar {
+  border: 1px solid black;
+}
+
 .player-health {
   height: 12px;
   background: red;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+
+.player-mana {
+  height: 12px;
+  background: blue;
   padding: 0;
   margin: 0;
   z-index: 1;

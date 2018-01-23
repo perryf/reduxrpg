@@ -2,6 +2,7 @@ const initialState = {
   "name": "",
   "img": "https://www.mariowiki.com/images/e/e3/Frogmario.gif",
   "health": 100,
+  "mana": 1,
   "level": 0,
   "moves": {
     "attack": 10,
@@ -11,7 +12,8 @@ const initialState = {
     "maxHealth": 100,
     "strength": 1,
     "defense": 1,
-    "magic": 1
+    "magic": 1,
+    "maxMana": 1
   }
 }
 
@@ -28,17 +30,24 @@ const player = (state = initialState, action) => {
         health: state.health - action.damage
       }
     case 'PLAYER_HEALS':
-      if (state.health + 50 < state.stats.maxHealth) {
+      if (state.health + state.healAmt < state.stats.maxHealth) {
         return {
           ...state,
-          health: state.health + 50
+          health: state.health + state.healAmt,
+          mana: state.mana - 1
         }
       } else {
         return {
           ...state,
-          health: state.stats.maxHealth
+          health: state.stats.maxHealth,
+          mana: state.mana - 1
         }
       }
+    case 'PLAYER_SPECIALS':
+    return {
+      ...state,
+      mana: state.mana - 1
+    }
     case 'INTRO_SUBMIT':
       var stat = action.payload.statIncrease
       if (stat === 'maxHealth') {
@@ -64,27 +73,40 @@ const player = (state = initialState, action) => {
         }
       }
     case 'LEVEL_UP':
-    var stat = action.statIncrease
-    if (stat === 'maxHealth') {
-      return {
-        ...state,
-        health: state.health + 10,
-        level: state.level + 1,
-        stats: {
-          ...state.stats,
-          [stat]: state.stats[stat] + 10
+      var stat = action.statIncrease
+      if (stat === 'maxHealth') {
+        return {
+          ...state,
+          health: state.health + 10,
+          level: state.level + 1,
+          mana: state.stats.maxMana,
+          stats: {
+            ...state.stats,
+            [stat]: state.stats[stat] + 10
+          }
+        }
+      } else if (stat === 'magic' && state.stats.magic % 2 === 0) {
+        return {
+          ...state,
+          level: state.level + 1,
+          mana: state.stats.maxMana + 1,
+          stats: {
+            ...state.stats,
+            [stat]: state.stats[stat] + 1,
+            maxMana: state.stats.maxMana + 1
+          }
+        }
+      } else {
+        return {
+          ...state,
+          level: state.level + 1,
+          mana: state.stats.maxMana,
+          stats: {
+            ...state.stats,
+            [stat]: state.stats[stat] + 1
+          }
         }
       }
-    } else {
-      return {
-        ...state,
-        level: state.level + 1,
-        stats: {
-          ...state.stats,
-          [stat]: state.stats[stat] + 1
-        }
-      }
-    }
     default:
       return state
   }
