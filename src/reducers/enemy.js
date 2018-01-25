@@ -16,7 +16,6 @@ const enemy = (state = initialEnemy, action) => {
         return state
       }
     case 'PLAYER_SPECIALS':
-      console.log(action.damage)
       if (state.health >= 0) {
         return {
           ...state,

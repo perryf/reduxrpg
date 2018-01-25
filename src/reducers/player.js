@@ -2,7 +2,7 @@ const initialState = {
   "name": "",
   "img": "https://www.mariowiki.com/images/e/e3/Frogmario.gif",
   "health": 100,
-  "mana": 1,
+  "mana": 2,
   "level": 0,
   "moves": {
     "attack": 10,
@@ -13,7 +13,7 @@ const initialState = {
     "strength": 1,
     "defense": 1,
     "magic": 1,
-    "maxMana": 1
+    "maxMana": 2
   }
 }
 
@@ -30,10 +30,10 @@ const player = (state = initialState, action) => {
         health: state.health - action.damage
       }
     case 'PLAYER_HEALS':
-      if (state.health + state.healAmt < state.stats.maxHealth) {
+      if (state.health + action.healAmt < state.stats.maxHealth) {
         return {
           ...state,
-          health: state.health + state.healAmt,
+          health: state.health + action.healAmt,
           mana: state.mana - 1
         }
       } else {

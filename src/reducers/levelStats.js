@@ -21,6 +21,7 @@ const levelStats = (state = initialState, action) => {
         playerHealAmt: 0
       }
     case 'PLAYER_HEALS':
+      console.log(action.healAmt)
       return {
         ...state,
         playerHealAmt: action.healAmt,
