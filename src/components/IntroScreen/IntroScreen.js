@@ -11,7 +11,13 @@ class IntroScreen extends Component {
       <div>
         <h3>Welcome to Redux RPG!</h3>
         <p>Choose your name and a stat to increase</p>
-        <form>
+        <form onSubmit={((e) => {
+          e.preventDefault()
+          this.props.introSubmit(
+            e.target.playerName.value, 
+            e.target.skills.value
+          )} 
+        )}>
           <div>
             <label>Name</label>
             <input type="text" name="playerName"/>
@@ -33,9 +39,8 @@ class IntroScreen extends Component {
             <input type="radio" name="skills" value="maxHealth"/>
           </div>
           <input
-            type="button"
+            type="submit"
             value="submit"
-            onClick={((e) => this.props.introSubmit(e.target.form.playerName.value, e.target.form.skills.value) )}
           />
         </form>
       </div>

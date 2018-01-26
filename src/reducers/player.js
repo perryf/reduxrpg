@@ -4,6 +4,7 @@ const initialState = {
   'health': 100,
   'mana': 2,
   'level': 0,
+  'alive': true,
   'moves': {
     'attack': 10,
     'special': 10
@@ -106,6 +107,11 @@ const player = (state = initialState, action) => {
             [stat]: state.stats[stat] + 1
           }
         }
+      }
+    case 'PLAYER_DIES': 
+      return {
+        ...state,
+        alive: false
       }
     default:
       return state

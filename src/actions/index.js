@@ -16,6 +16,10 @@ export const playerHeals = (maxHealth, magic) => ({
     (Math.pow(magic, 0.3) * (maxHealth * 0.1) * Math.random()))
 })
 
+export const playerDies = (health) => ({
+  type: 'PLAYER_DIES'
+})
+
 export const enemyAttacks = (attackPow, strength, defense) => ({
   type: 'ENEMY_ATTACKS',
   damage: Math.ceil(((Math.pow(strength, 0.6) * attackPow) / Math.pow(defense, 0.6)) +
