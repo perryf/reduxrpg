@@ -1,19 +1,19 @@
 const initialState = {
-  "name": "",
-  "img": "https://www.mariowiki.com/images/e/e3/Frogmario.gif",
-  "health": 100,
-  "mana": 2,
-  "level": 0,
-  "moves": {
-    "attack": 10,
-    "special": 20,
+  'name': '',
+  'img': 'https://www.mariowiki.com/images/e/e3/Frogmario.gif',
+  'health': 100,
+  'mana': 2,
+  'level': 0,
+  'moves': {
+    'attack': 10,
+    'special': 10
   },
-  "stats": {
-    "maxHealth": 100,
-    "strength": 1,
-    "defense": 1,
-    "magic": 1,
-    "maxMana": 2
+  'stats': {
+    'maxHealth': 100,
+    'strength': 1,
+    'defense': 1,
+    'magic': 1,
+    'maxMana': 2
   }
 }
 
@@ -44,21 +44,21 @@ const player = (state = initialState, action) => {
         }
       }
     case 'PLAYER_SPECIALS':
-    return {
-      ...state,
-      mana: state.mana - 1
-    }
+      return {
+        ...state,
+        mana: state.mana - 1
+      }
     case 'INTRO_SUBMIT':
       var stat = action.payload.statIncrease
       if (stat === 'maxHealth') {
         return {
           ...state,
           name: action.payload.name,
-          health: state.health + 10,
+          health: state.health + 20,
           level: state.level + 1,
           stats: {
             ...state.stats,
-            [stat]: state.stats[stat] + 10
+            [stat]: state.stats[stat] + 20
           }
         }
       } else {
@@ -77,12 +77,12 @@ const player = (state = initialState, action) => {
       if (stat === 'maxHealth') {
         return {
           ...state,
-          health: state.health + 10,
+          health: state.health + 20,
           level: state.level + 1,
           mana: state.stats.maxMana,
           stats: {
             ...state.stats,
-            [stat]: state.stats[stat] + 10
+            [stat]: state.stats[stat] + 20
           }
         }
       } else if (stat === 'magic' && state.stats.magic % 2 === 0) {
