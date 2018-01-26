@@ -20,6 +20,22 @@ export const playerDies = (health) => ({
   type: 'PLAYER_DIES'
 })
 
+export const startAttacking = () => ({
+  type: 'START_ATTACKING'
+})
+
+export const endAttacking = () => ({
+  type: 'END_ATTACKING'
+})
+
+export const startSpecialing = () => ({
+  type: 'START_SPECIALING'
+})
+
+export const endSpecialing = () => ({
+  type: 'END_SPECIALING'
+})
+
 export const enemyAttacks = (attackPow, strength, defense) => ({
   type: 'ENEMY_ATTACKS',
   damage: Math.ceil(((Math.pow(strength, 0.6) * attackPow) / Math.pow(defense, 0.6)) +

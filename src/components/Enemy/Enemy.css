@@ -6,7 +6,7 @@
 .enemy-image {
   width: 100px;
   height: 100px;
-  margin: 10px;
+  margin: 0;
 }
 
 .enemy-container h3 {

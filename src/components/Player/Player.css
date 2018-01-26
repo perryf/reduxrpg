@@ -1,11 +1,17 @@
-.player-container {
-}
-
 .player-image {
   width: 100px;
   height: 100px;
   margin: 0;
   padding: 0;
+}
+
+.attacking {
+  transform: translateX(50px);
+  transition: 500ms;
+}
+
+.specialing {
+  background: radial-gradient(circle, yellow 40%, transparent 80%);
 }
 
 .player-container h3 {
@@ -39,5 +45,15 @@
 
 .stats {
   margin: 0;
+  border: 1px solid black;
+  text-align: left;
+  padding: 4px;
+  background: lightgrey;
+}
+
+.stat {
+  margin: 0;
   padding: 0;
+  font-size: 12px;
+  font-family: "Roboto Mono";
 }

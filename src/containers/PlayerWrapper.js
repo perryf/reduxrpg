@@ -11,7 +11,9 @@ const mapStateToProps = (state) => ({
   defense: state.player.stats.defense,
   maxHealth: state.player.stats.maxHealth,
   magic: state.player.stats.magic,
-  maxMana: state.player.stats.maxMana
+  maxMana: state.player.stats.maxMana,
+  isAttacking: state.player.isAttacking,
+  isSpecialing: state.player.isSpecialing
 })
 
 const mapDispatchToProps = {

@@ -11,9 +11,15 @@ const FightScreen = ({isPlaying}) => {
       {!isPlaying ?
         <IntroScreenWrapper /> :
         <div className="combat">
-          <PlayerWrapper />
-          <LevelStatsWrapper />
-          <EnemyWrapper />
+          <div className="character">
+            <PlayerWrapper />
+          </div>
+          <div className="combat-buttons">
+            <LevelStatsWrapper />
+          </div>
+          <div className="character">
+            <EnemyWrapper />
+          </div>
         </div>
       }
     </div>

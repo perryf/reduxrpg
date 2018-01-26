@@ -1,10 +1,12 @@
 const initialState = {
   'name': '',
-  'img': 'https://www.mariowiki.com/images/e/e3/Frogmario.gif',
+  'img': 'img/mario_frog.gif',
   'health': 100,
   'mana': 2,
   'level': 0,
   'alive': true,
+  'isAttacking': false,
+  'isSpecialing': false,
   'moves': {
     'attack': 10,
     'special': 10
@@ -113,6 +115,26 @@ const player = (state = initialState, action) => {
         ...state,
         alive: false
       }
+    case 'START_ATTACKING':
+      return {
+        ...state,
+        isAttacking: true
+      }
+    case 'END_ATTACKING':
+    return {
+      ...state,
+      isAttacking: false
+    }
+    case 'START_SPECIALING':
+      return {
+        ...state,
+        isSpecialing: true
+      }
+    case 'END_SPECIALING':
+    return {
+      ...state,
+      isSpecialing: false
+    }
     default:
       return state
   }

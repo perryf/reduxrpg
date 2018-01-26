@@ -21,39 +21,51 @@ class LevelStats extends Component {
       this.props.playerAttack,
       this.props.playerStrength,
       this.props.enemyDefense
-    )
-    this.props.enemyAttacks(
-      this.props.enemyAttack,
-      this.props.enemyStrength,
-      this.props.playerDefense
-    )
+    ), 
+    this.props.startAttacking()
+    setTimeout(() => {
+      this.props.enemyAttacks(
+        this.props.enemyAttack,
+        this.props.enemyStrength,
+        this.props.playerDefense
+      ), 
+      this.props.endAttacking()
+    }, 1000)
   }
 
   handleHeal() {
     this.props.playerHeals(
       this.props.playerMaxHealth,
       this.props.playerMagic
-    )
-    this.props.enemyAttacks(
-      this.props.enemyAttack,
-      this.props.enemyStrength,
-      this.props.playerDefense
-    )
+    ), 
+    this.props.startSpecialing()
+    setTimeout(() => {
+      this.props.enemyAttacks(
+        this.props.enemyAttack,
+        this.props.enemyStrength,
+        this.props.playerDefense
+      ),
+      this.props.endSpecialing()
+    }, 1000)
   }
 
   handleSpecial() {
     this.props.playerSpecials(
       this.props.playerSpecial,
       this.props.playerMagic
-    )
-    this.props.enemyAttacks(
-      this.props.enemyAttack,
-      this.props.enemyStrength,
-      this.props.playerDefense
-    )
+    ), this.props.startSpecialing()
+    setTimeout(() => {
+      this.props.enemyAttacks(
+        this.props.enemyAttack,
+        this.props.enemyStrength,
+        this.props.playerDefense
+      ),
+      this.props.endSpecialing()
+    }, 1000)
   }
 
   render() {
+    console.log("playerIsPerforming: " + this.props.playerIsPerforming)
     let enemyDmgTaken = this.props.enemyDmgTaken ?
       <p>{this.props.enemyName} Took {this.props.enemyDmgTaken} Damage!</p> : <p></p>
     let playerDmgTaken = this.props.playerDmgTaken ?
@@ -67,24 +79,24 @@ class LevelStats extends Component {
     let isDead = this.props.playerHealth <= 0 ?
       <p>You are dead!</p> : ""
     return (
-      <div>
+      <div className="level-stats">
         {isDead}
         {this.props.enemyHealth > 0 ?
           <div className="action-buttons">
             <button
-              className="action-button"
+              className="action-button attack-button"
               onClick={() => this.handleAttack()}
             >Attack</button>
             {this.props.playerMana > 0 ?
               <button
-                className="action-button"
+                className="action-button special-button"
                 onClick={() => this.handleSpecial()}
               >Special Attack (1 Mana)</button> :
               <button className="no-mana">Out of Mana!</button>
             }
             {this.props.playerMana > 0 ?
               <button
-                className="action-button"
+                className="action-button special-button"
                 onClick={() => this.handleHeal()}
               >Heal (1 Mana)</button> :
               <button className="no-mana">Out of Mana!</button>
