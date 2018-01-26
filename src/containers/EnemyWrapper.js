@@ -7,7 +7,9 @@ const mapStateToProps = (state) => ({
   img: state.enemy.img,
   health: state.enemy.health,
   attack: state.enemy.moves.attack,
-  maxHealth: state.enemy.stats.maxHealth
+  maxHealth: state.enemy.stats.maxHealth,
+  isAttacking: state.enemy.isAttacking,
+  isSpecialing: state.enemy.isSpecialing
 })
 
 const mapDispatchToProps = {

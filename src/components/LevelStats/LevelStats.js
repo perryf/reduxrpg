@@ -22,14 +22,15 @@ class LevelStats extends Component {
       this.props.playerStrength,
       this.props.enemyDefense
     ), 
-    this.props.startAttacking()
+    this.props.playerStartAttackPhase()
     setTimeout(() => {
       this.props.enemyAttacks(
         this.props.enemyAttack,
         this.props.enemyStrength,
         this.props.playerDefense
-      ), 
-      this.props.endAttacking()
+      ),
+      this.props.enemyStartAttackPhase()
+      this.props.playerEndAttackPhase()
     }, 1000)
   }
 
@@ -38,14 +39,15 @@ class LevelStats extends Component {
       this.props.playerMaxHealth,
       this.props.playerMagic
     ), 
-    this.props.startSpecialing()
+    this.props.playerStartSpecialPhase()
     setTimeout(() => {
       this.props.enemyAttacks(
         this.props.enemyAttack,
         this.props.enemyStrength,
         this.props.playerDefense
       ),
-      this.props.endSpecialing()
+      this.props.enemyAttack()
+      this.props.playerEndSpecialPhase()
     }, 1000)
   }
 
@@ -53,19 +55,19 @@ class LevelStats extends Component {
     this.props.playerSpecials(
       this.props.playerSpecial,
       this.props.playerMagic
-    ), this.props.startSpecialing()
+    ), this.props.playerStartAttackPhase()
     setTimeout(() => {
       this.props.enemyAttacks(
         this.props.enemyAttack,
         this.props.enemyStrength,
         this.props.playerDefense
-      ),
-      this.props.endSpecialing()
+      ), 
+      this.props.enemyAttack()
+      this.props.playerEndAttackPhase()
     }, 1000)
   }
 
   render() {
-    console.log("playerIsPerforming: " + this.props.playerIsPerforming)
     let enemyDmgTaken = this.props.enemyDmgTaken ?
       <p>{this.props.enemyName} Took {this.props.enemyDmgTaken} Damage!</p> : <p></p>
     let playerDmgTaken = this.props.playerDmgTaken ?

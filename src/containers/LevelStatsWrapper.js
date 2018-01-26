@@ -8,10 +8,14 @@ import {
   nextEnemy, 
   needsLevelUp, 
   playerDies,
-  startAttacking,
-  endAttacking,
-  startSpecialing,
-  endSpecialing
+  playerStartAttackPhase,
+  playerEndAttackPhase,
+  playerStartSpecialPhase,
+  playerEndSpecialPhase,
+  enemyStartAttackPhase,
+  enemyEndAttackPhase,
+  enemyStartSpecialPhase,
+  enemyEndSpecialPhase
 } from '../actions'
 
 const mapStateToProps = (state) => ({
@@ -45,10 +49,14 @@ const mapDispatchToProps = {
   enemyAttacks,
   nextEnemy,
   needsLevelUp,
-  startAttacking, 
-  endAttacking,
-  startSpecialing,
-  endSpecialing
+  playerStartAttackPhase,
+  playerEndAttackPhase,
+  playerStartSpecialPhase,
+  playerEndSpecialPhase,
+  enemyStartAttackPhase,
+  enemyEndAttackPhase,
+  enemyStartSpecialPhase,
+  enemyEndSpecialPhase
 }
 
 const EnemyWrapper = connect(

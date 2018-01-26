@@ -6,7 +6,10 @@ const Player = ({name, img, health, mana, strength, defense, magic, maxHealth, m
   let specialStatus = isSpecialing ? "specialing" : ""
   return(
     <div className="player-container">
-      <img className={"player-image " + attackStatus + " " + specialStatus} src={img} />
+      <img 
+        className={"player-image " + attackStatus + " " + specialStatus} 
+        src={img} 
+        alt={name} />
       <h3>{name}</h3>
       <div className="status-bar" style={{width: maxHealth + "px"}}>
         <div className="player-health" style={{width: health + "px"}}></div>

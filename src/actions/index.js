@@ -16,25 +16,23 @@ export const playerHeals = (maxHealth, magic) => ({
     (Math.pow(magic, 0.3) * (maxHealth * 0.1) * Math.random()))
 })
 
-export const playerDies = (health) => ({
-  type: 'PLAYER_DIES'
-})
+export const playerDies = () => ({type: 'PLAYER_DIES'})
 
-export const startAttacking = () => ({
-  type: 'START_ATTACKING'
-})
+export const playerStartAttackPhase = () => ({type: 'PLAYER_START_ATTACK_PHASE'})
 
-export const endAttacking = () => ({
-  type: 'END_ATTACKING'
-})
+export const playerEndAttackPhase = () => ({type: 'PLAYER_END_ATTACK_PHASE'})
 
-export const startSpecialing = () => ({
-  type: 'START_SPECIALING'
-})
+export const playerStartSpecialPhase = () => ({type: 'PLAYER_START_SPECIAL_PHASE'})
 
-export const endSpecialing = () => ({
-  type: 'END_SPECIALING'
-})
+export const playerEndSpecialPhase = () => ({type: 'PLAYER_END_SPECIAL_PHASE'})
+
+export const enemyStartAttackPhase = () => ({type: 'ENEMY_START_ATTACK_PHASE'})
+
+export const enemyEndAttackPhase = () => ({type: 'ENEMY_END_ATTACK_PHASE'})
+
+export const enemyStartSpecialPhase = () => ({type: 'ENEMY_START_SPECIAL_PHASE'})
+
+export const enemyEndSpecialPhase = () => ({type: 'ENEMY_END_SPECIAL_PHASE'})
 
 export const enemyAttacks = (attackPow, strength, defense) => ({
   type: 'ENEMY_ATTACKS',

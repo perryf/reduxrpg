@@ -115,22 +115,22 @@ const player = (state = initialState, action) => {
         ...state,
         alive: false
       }
-    case 'START_ATTACKING':
+    case 'PLAYER_START_ATTACK_PHASE':
       return {
         ...state,
         isAttacking: true
       }
-    case 'END_ATTACKING':
+    case 'PLAYER_END_ATTACK_PHASE':
     return {
       ...state,
       isAttacking: false
     }
-    case 'START_SPECIALING':
+    case 'PLAYER_START_SPECIAL_PHASE':
       return {
         ...state,
         isSpecialing: true
       }
-    case 'END_SPECIALING':
+    case 'PLAYER_END_SPECIAL_PHASE':
     return {
       ...state,
       isSpecialing: false
