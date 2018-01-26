@@ -31,6 +31,7 @@ const mapStateToProps = (state) => ({
   playerMaxHealth: state.player.stats.maxHealth,
   playerMagic: state.player.stats.magic,
   playerMana: state.player.mana,
+  playerLevel: state.player.level,
   enemyName: state.enemy.name,
   enemyHealth: state.enemy.health,
   enemyStrength: state.enemy.stats.strength,

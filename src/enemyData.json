@@ -118,7 +118,7 @@
     },
     "stats": {
       "maxHealth": 150,
-      "strength": 3,
+      "strength": 2,
       "defense": 2,
       "magic": 3
     }
@@ -145,10 +145,10 @@
       "special-attack": 10
     },
     "stats": {
-      "maxHealth": 110,
+      "maxHealth": 150,
       "strength": 1,
       "defense": 1,
-      "magic": 6
+      "magic": 5
     }
   },
   {
@@ -161,7 +161,7 @@
     "stats": {
       "maxHealth": 180,
       "strength": 4,
-      "defense": 3,
+      "defense": 2,
       "magic": 3
     }
   },
@@ -175,7 +175,7 @@
     "stats": {
       "maxHealth": 200,
       "strength": 5,
-      "defense": 5,
+      "defense": 4,
       "magic": 3
     }
   },
@@ -189,7 +189,7 @@
     "stats": {
       "maxHealth": 200,
       "strength": 4,
-      "defense": 8,
+      "defense": 6,
       "magic": 4
     }
   },

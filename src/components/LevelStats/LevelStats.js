@@ -29,8 +29,11 @@ class LevelStats extends Component {
         this.props.enemyStrength,
         this.props.playerDefense
       ),
-      this.props.enemyStartAttackPhase()
-      this.props.playerEndAttackPhase()
+      this.props.enemyStartAttackPhase(),
+      this.props.playerEndAttackPhase(),
+      setTimeout(() => {
+        this.props.enemyEndAttackPhase()
+      }, 1000)
     }, 1000)
   }
 
@@ -46,15 +49,19 @@ class LevelStats extends Component {
         this.props.enemyStrength,
         this.props.playerDefense
       ),
-      this.props.enemyAttack()
-      this.props.playerEndSpecialPhase()
+      this.props.enemyStartAttackPhase(),
+      this.props.playerEndSpecialPhase(),
+      setTimeout(() => {
+        this.props.enemyEndAttackPhase()
+      }, 1000)
     }, 1000)
   }
 
   handleSpecial() {
     this.props.playerSpecials(
       this.props.playerSpecial,
-      this.props.playerMagic
+      this.props.playerMagic,
+      this.props.playerLevel
     ), this.props.playerStartAttackPhase()
     setTimeout(() => {
       this.props.enemyAttacks(
@@ -62,8 +69,11 @@ class LevelStats extends Component {
         this.props.enemyStrength,
         this.props.playerDefense
       ), 
-      this.props.enemyAttack()
-      this.props.playerEndAttackPhase()
+      this.props.enemyStartAttackPhase(),
+      this.props.playerEndAttackPhase(),
+      setTimeout(() => {
+        this.props.enemyEndAttackPhase()
+      }, 1000)
     }, 1000)
   }
 

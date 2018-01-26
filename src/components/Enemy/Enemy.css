@@ -1,7 +1,3 @@
-.enemy-container {
-  margin: 10px;
-}
-
 .enemy-image {
   width: 60px;
   height: 60px;
@@ -15,6 +11,11 @@
 
 .en-specialing {
   background: radial-gradient(circle, yellow 40%, transparent 80%);
+}
+
+.enemy-container {
+  width: 60px;
+  margin: 0 20px;
 }
 
 .enemy-container h3 {

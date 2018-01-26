@@ -5,9 +5,13 @@
   padding: 0;
 }
 
+.waiting {
+  transition: 100ms;
+}
+
 .attacking {
   transform: translateX(50px);
-  transition: 500ms;
+  transition: 400ms;
 }
 
 .specialing {
