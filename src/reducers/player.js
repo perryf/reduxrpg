@@ -23,14 +23,22 @@ const initialState = {
 const player = (state = initialState, action) => {
   switch (action.type) {
     case 'ENEMY_ATTACKS':
-      return {
-        ...state,
-        health: state.health - action.damage
+      if (action.enemyHealth > 0) {
+        return {
+          ...state,
+          health: state.health - action.damage
+        }
+      } else {
+        return state
       }
     case 'ENEMY_SPECIALS':
-      return {
-        ...state,
-        health: state.health - action.damage
+      if (action.enemyHealth > 0) {
+        return {
+          ...state,
+          health: state.health - action.damage
+        }
+      } else {
+        return state
       }
     case 'PLAYER_HEALS':
       if (state.health + action.healAmt < state.stats.maxHealth) {

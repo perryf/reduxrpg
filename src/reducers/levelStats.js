@@ -20,7 +20,6 @@ const levelStats = (state = initialState, action) => {
           enemysTurn: true
         }
       } else {
-        console.log('hitting!')
         return {
           ...state,
           enemyDmgTaken: action.damage,
@@ -37,7 +36,6 @@ const levelStats = (state = initialState, action) => {
         enemysTurn: true
       }
     case 'PLAYER_HEALS':
-      console.log(action.healAmt)
       return {
         ...state,
         playerHealAmt: action.healAmt,
@@ -59,10 +57,7 @@ const levelStats = (state = initialState, action) => {
     case 'NEXT_ENEMY':
       return {
         ...state,
-        playerDmgTaken: 0,
-        playerHealAmt: 0,
-        enemyDmgTaken: 0,
-        enemysTurn: true
+        enemysTurn: false
       }
     case 'INTRO_SUBMIT':
       return {
@@ -72,7 +67,11 @@ const levelStats = (state = initialState, action) => {
     case 'NEEDS_LEVEL_UP':
       return {
         ...state,
-        isLevelingUp: true
+        playerDmgTaken: 0,
+        playerHealAmt: 0,
+        enemyDmgTaken: 0,
+        isLevelingUp: true,
+
       }
     case 'LEVEL_UP':
       return {

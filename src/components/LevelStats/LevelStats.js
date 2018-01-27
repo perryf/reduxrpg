@@ -63,7 +63,7 @@ class LevelStats extends Component {
         this.props.enemySpecials(
           this.props.enemyAttack,
           this.props.enemyMagic,
-          this.props.playerDefense
+          this.props.enemyHealth
         ), 
         this.props.enemyStartAttackPhase(),
         setTimeout(() => {
@@ -75,7 +75,8 @@ class LevelStats extends Component {
         this.props.enemyAttacks(
           this.props.enemyAttack,
           this.props.enemyStrength,
-          this.props.playerDefense
+          this.props.playerDefense,
+          this.props.enemyHealth
         ), 
         this.props.enemyStartAttackPhase(),
         setTimeout(() => {
@@ -100,7 +101,6 @@ class LevelStats extends Component {
       <LevelUpWrapper /> : ""
     let isDead = this.props.playerHealth <= 0 ?
       <p>You are dead!</p> : ""
-    console.log(this.props.enemysTurn)
     return (
       <div className="level-stats">
         {isDead}

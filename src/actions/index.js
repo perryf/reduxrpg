@@ -35,14 +35,16 @@ export const enemyStartSpecialPhase = () => ({type: 'ENEMY_START_SPECIAL_PHASE'}
 
 export const enemyEndSpecialPhase = () => ({type: 'ENEMY_END_SPECIAL_PHASE'})
 
-export const enemyAttacks = (attackPow, strength, defense) => ({
+export const enemyAttacks = (attackPow, strength, defense, enemyHealth) => ({
   type: 'ENEMY_ATTACKS',
+  enemyHealth: enemyHealth,
   damage: Math.ceil(((Math.pow(strength, 0.6) * attackPow) / Math.pow(defense, 0.6)) +
     ((Math.pow(strength, 0.6) * (attackPow * 0.5)) * Math.random()) / Math.pow(defense, 0.6))
 })
 
-export const enemySpecials = (attackPow, magic) => ({
+export const enemySpecials = (attackPow, magic, enemyHealth) => ({
   type: 'ENEMY_SPECIALS',
+  enemyHealth: enemyHealth,
   damage: Math.ceil((Math.pow(magic, 0.6) * attackPow) +
     ((Math.pow(magic, 0.2) * attackPow) * Math.random()))
 })

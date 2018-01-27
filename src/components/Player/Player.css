@@ -11,11 +11,13 @@
 
 .attacking {
   transform: translateX(50px);
-  transition: 400ms;
+  transition: 300ms;
 }
 
 .specialing {
   background: radial-gradient(circle, yellow 40%, transparent 80%);
+  transform: scale(1.5, 1.5);
+  transition: 300ms;
 }
 
 .player-container h3 {
