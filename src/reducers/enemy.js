@@ -10,9 +10,16 @@ const enemy = (state = initialEnemy, action) => {
   switch (action.type) {
     case 'PLAYER_ATTACKS':
       if (state.health >= 0) {
-        return {
-          ...state,
-          health: state.health - action.damage
+        if (!action.crit) {
+          return {
+            ...state,
+            health: state.health - action.damage
+          }
+        } else {
+          return {
+            ...state,
+            health: state.health - (action.damage * 2)
+          }
         }
       } else {
         return state

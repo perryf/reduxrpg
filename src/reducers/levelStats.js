@@ -1,41 +1,60 @@
 const initialState = {
   playerDmgTaken: 0,
   playerHealAmt: 0,
+  playerHitCrit: false,
   enemyDmgTaken: 0,
   isLevelingUp: false,
-  isPlaying: false
+  isPlaying: false,
+  enemysTurn: false
 }
 
 const levelStats = (state = initialState, action) => {
   switch (action.type) {
     case 'PLAYER_ATTACKS':
-      return {
-        ...state,
-        enemyDmgTaken: action.damage,
-        playerHealAmt: 0
+      if (!action.crit) {
+        return {
+          ...state,
+          enemyDmgTaken: action.damage,
+          playerHealAmt: 0,
+          playerHitCrit: false, 
+          enemysTurn: true
+        }
+      } else {
+        console.log('hitting!')
+        return {
+          ...state,
+          enemyDmgTaken: action.damage,
+          playerHealAmt: 0,
+          playerHitCrit: true,
+          enemysTurn: true
+        }
       }
     case 'PLAYER_SPECIALS':
       return {
         ...state,
         enemyDmgTaken: action.damage,
-        playerHealAmt: 0
+        playerHealAmt: 0,
+        enemysTurn: true
       }
     case 'PLAYER_HEALS':
       console.log(action.healAmt)
       return {
         ...state,
         playerHealAmt: action.healAmt,
-        enemyDmgTaken: 0
+        enemyDmgTaken: 0,
+        enemysTurn: true
       }
     case 'ENEMY_ATTACKS':
       return {
         ...state,
-        playerDmgTaken: action.damage
+        playerDmgTaken: action.damage,
+        enemysTurn: false
       }
     case 'ENEMY_SPECIALS':
       return {
         ...state,
-        playerDmgTaken: action.damage
+        playerDmgTaken: action.damage,
+        enemysTurn: false
       }
     case 'NEXT_ENEMY':
       return {
@@ -43,6 +62,7 @@ const levelStats = (state = initialState, action) => {
         playerDmgTaken: 0,
         playerHealAmt: 0,
         enemyDmgTaken: 0,
+        enemysTurn: true
       }
     case 'INTRO_SUBMIT':
       return {
@@ -57,7 +77,8 @@ const levelStats = (state = initialState, action) => {
     case 'LEVEL_UP':
       return {
         ...state,
-        isLevelingUp: false
+        isLevelingUp: false,
+        playerHitCrit: false
       }
     default:
       return state

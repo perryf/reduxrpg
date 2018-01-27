@@ -5,6 +5,7 @@ import {
   playerHeals, 
   playerSpecials, 
   enemyAttacks, 
+  enemySpecials,
   nextEnemy, 
   needsLevelUp, 
   playerDies,
@@ -32,6 +33,7 @@ const mapStateToProps = (state) => ({
   playerMagic: state.player.stats.magic,
   playerMana: state.player.mana,
   playerLevel: state.player.level,
+  playerHitCrit: state.levelStats.playerHitCrit,
   enemyName: state.enemy.name,
   enemyHealth: state.enemy.health,
   enemyStrength: state.enemy.stats.strength,
@@ -39,7 +41,8 @@ const mapStateToProps = (state) => ({
   enemyMaxHealth: state.enemy.stats.maxHealth,
   enemyDefense: state.enemy.stats.defense,
   enemyMagic: state.enemy.stats.magic,
-  isLevelingUp: state.levelStats.isLevelingUp
+  isLevelingUp: state.levelStats.isLevelingUp,
+  enemysTurn: state.levelStats.enemysTurn
 })
 
 const mapDispatchToProps = {
@@ -48,6 +51,7 @@ const mapDispatchToProps = {
   playerSpecials,
   playerDies,
   enemyAttacks,
+  enemySpecials,
   nextEnemy,
   needsLevelUp,
   playerStartAttackPhase,

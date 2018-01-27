@@ -1,5 +1,6 @@
-export const playerAttacks = (attackPow, strength, defense) => ({
+export const playerAttacks = (attackPow, strength, defense, crit) => ({
   type: 'PLAYER_ATTACKS',
+  crit: crit,
   damage: Math.ceil(((Math.pow(strength, 0.8) * attackPow) / Math.pow(defense, 0.6)) +
     ((Math.pow(strength, 0.8) * (attackPow * 0.5)) * Math.random()) / Math.pow(defense, 0.6))
 })
