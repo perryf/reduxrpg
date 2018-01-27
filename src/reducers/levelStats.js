@@ -36,11 +36,20 @@ const levelStats = (state = initialState, action) => {
         enemysTurn: true
       }
     case 'PLAYER_HEALS':
-      return {
-        ...state,
-        playerHealAmt: action.healAmt,
-        enemyDmgTaken: 0,
-        enemysTurn: true
+      if (action.currentHealth + action.healAmt < action.maxHealth) {
+        return {
+          ...state,
+          playerHealAmt: action.healAmt,
+          enemyDmgTaken: 0,
+          enemysTurn: true
+        }
+      } else {
+        return {
+          ...state,
+          playerHealAmt: action.maxHealth - action.currentHealth,
+          enemyDmgTaken: 0,
+          enemysTurn: true
+        }
       }
     case 'ENEMY_ATTACKS':
       return {

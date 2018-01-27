@@ -34,6 +34,7 @@ class LevelStats extends Component {
 
   handleHeal() {
     this.props.playerHeals(
+      this.props.playerHealth,
       this.props.playerMaxHealth,
       this.props.playerMagic
     ), 

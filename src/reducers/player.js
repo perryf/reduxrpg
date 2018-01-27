@@ -41,16 +41,16 @@ const player = (state = initialState, action) => {
         return state
       }
     case 'PLAYER_HEALS':
-      if (state.health + action.healAmt < state.stats.maxHealth) {
+      if (action.currentHealth + action.healAmt < action.maxHealth) {
         return {
           ...state,
-          health: state.health + action.healAmt,
+          health: action.currentHealth + action.healAmt,
           mana: state.mana - 1
         }
       } else {
         return {
           ...state,
-          health: state.stats.maxHealth,
+          health: action.maxHealth,
           mana: state.mana - 1
         }
       }

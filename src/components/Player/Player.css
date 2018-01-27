@@ -2,7 +2,6 @@
   width: 60px;
   height: 60px;
   margin: 0;
-  padding: 0;
 }
 
 .waiting {
@@ -18,6 +17,10 @@
   background: radial-gradient(circle, yellow 40%, transparent 80%);
   transform: scale(1.5, 1.5);
   transition: 300ms;
+}
+
+.player-container {
+  width: 120px;
 }
 
 .player-container h3 {
@@ -60,6 +63,6 @@
 .stat {
   margin: 0;
   padding: 0;
-  font-size: 12px;
+  font-size: 10px;
   font-family: "Roboto Mono";
 }
