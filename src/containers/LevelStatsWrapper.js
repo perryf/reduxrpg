@@ -38,6 +38,7 @@ const mapStateToProps = (state) => ({
   enemyHealth: state.enemy.health,
   enemyStrength: state.enemy.stats.strength,
   enemyAttack: state.enemy.moves.attack,
+  enemySpecial: state.enemy.moves.specialAttack,
   enemyMaxHealth: state.enemy.stats.maxHealth,
   enemyDefense: state.enemy.stats.defense,
   enemyMagic: state.enemy.stats.magic,

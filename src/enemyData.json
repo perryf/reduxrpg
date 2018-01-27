@@ -30,7 +30,7 @@
     "img": "img/waddledee.gif",
     "moves": {
       "attack": 8,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 75,
@@ -44,7 +44,7 @@
     "img": "img/koopatroopa.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 80,
@@ -58,7 +58,7 @@
     "img": "img/pikachu.gif",
     "moves": {
       "attack": 10,
-      "thunder-bolt": 10
+      "thunderBolt": 10
     },
     "stats": {
       "maxHealth": 80,
@@ -72,7 +72,7 @@
     "img": "https://vignette.wikia.nocookie.net/sonic/images/4/42/Ganigani.gif/revision/latest?cb=20100725214739",
     "moves": {
       "attack": 10,
-      "energyball": 10
+      "energyBall": 10
     },
     "stats": {
       "maxHealth": 90,
@@ -86,7 +86,7 @@
     "img": "img/koopa_paratroopa.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 120,
@@ -100,7 +100,7 @@
     "img": "img/grounder.png",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 130,
@@ -128,7 +128,7 @@
     "img": "img/squirtle.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 150,
@@ -142,7 +142,7 @@
     "img": "img/haunter.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 150,
@@ -156,7 +156,7 @@
     "img": "img/blooper.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 180,
@@ -170,7 +170,7 @@
     "img": "img/doomdemon.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 200,
@@ -184,7 +184,7 @@
     "img": "img/turtloids.png",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 200,
@@ -198,7 +198,7 @@
     "img": "img/dragonite.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 250,
@@ -212,7 +212,7 @@
     "img": "img/cacodemon.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 280,
@@ -226,7 +226,7 @@
     "img": "img/mewtwo.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 300,
@@ -240,7 +240,7 @@
     "img": "img/dedede.gif",
     "moves": {
       "attack": 10,
-      "special-attack": 10
+      "specialAttack": 10
     },
     "stats": {
       "maxHealth": 350,

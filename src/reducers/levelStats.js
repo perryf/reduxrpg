@@ -5,7 +5,9 @@ const initialState = {
   enemyDmgTaken: 0,
   isLevelingUp: false,
   isPlaying: false,
-  enemysTurn: false
+  enemysTurn: false,
+  playerLastMove: null,
+  enemyLastMove: null,
 }
 
 const levelStats = (state = initialState, action) => {
