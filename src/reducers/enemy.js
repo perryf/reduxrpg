@@ -1,13 +1,19 @@
 const data = require('../enemyData.json')
-let counter = 0
 
-const initialEnemy = data[counter]
+const initialEnemy = data[0]
 initialEnemy.health = initialEnemy.stats.maxHealth
 initialEnemy.isAttacking = false
 initialEnemy.isSpecialing = false
+initialEnemy.counter = 0
 
 const enemy = (state = initialEnemy, action) => {
   switch (action.type) {
+    case 'INCREASE_ENEMY_COUNTER':
+      console.log('counter test')
+      return {
+        ...state,
+        counter: ++state.counter
+      }
     case 'PLAYER_ATTACKS':
       if (state.health >= 0) {
         if (!action.crit) {
@@ -34,7 +40,8 @@ const enemy = (state = initialEnemy, action) => {
         return state
       }
     case 'NEXT_ENEMY':
-      counter += 1
+      // counter += 1
+      let counter = state.counter
       if (data[counter]) {
         return Object.assign({}, data[counter], {
           health: data[counter].stats.maxHealth,
@@ -44,22 +51,22 @@ const enemy = (state = initialEnemy, action) => {
       } else {
         return state
       }
-      case 'ENEMY_START_ATTACK_PHASE':
+    case 'ENEMY_START_ATTACK_PHASE':
       return {
         ...state,
         isAttacking: true
       }
-      case 'ENEMY_END_ATTACK_PHASE':
+    case 'ENEMY_END_ATTACK_PHASE':
       return {
         ...state,
         isAttacking: false
       }
-      case 'ENEMY_START_SPECIAL_PHASE':
+    case 'ENEMY_START_SPECIAL_PHASE':
         return {
           ...state,
           isSpecialing: true
         }
-      case 'ENEMY_END_SPECIAL_PHASE':
+    case 'ENEMY_END_SPECIAL_PHASE':
       return {
         ...state,
         isSpecialing: false

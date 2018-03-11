@@ -51,6 +51,10 @@ export const enemySpecials = (attackPow, magic, enemyHealth) => ({
     ((Math.pow(magic, 0.2) * attackPow) * Math.random()))
 })
 
+export const increaseEnemyCounter = () => ({
+  type: 'INCREASE_ENEMY_COUNTER'
+})
+
 export const nextEnemy = (level) => ({
   type: 'NEXT_ENEMY'
 })

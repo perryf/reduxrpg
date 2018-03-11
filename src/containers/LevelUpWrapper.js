@@ -1,13 +1,14 @@
 import {connect} from 'react-redux'
 import LevelUp from '../components/LevelUp/LevelUp'
-import {levelUp, nextEnemy} from '../actions'
+import {levelUp, nextEnemy, increaseEnemyCounter} from '../actions'
 
 const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
   levelUp,
-  nextEnemy
+  nextEnemy,
+  increaseEnemyCounter
 }
 
 const LevelUpWrapper = connect(
