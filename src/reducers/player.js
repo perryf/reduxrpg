@@ -60,8 +60,8 @@ const player = (state = initialState, action) => {
         mana: state.mana - 1
       }
     case 'INTRO_SUBMIT':
-      var stat = action.payload.statIncrease
-      if (stat === 'maxHealth') {
+      let statInit = action.payload.statIncrease
+      if (statInit === 'maxHealth') {
         return {
           ...state,
           name: action.payload.name,
@@ -69,7 +69,7 @@ const player = (state = initialState, action) => {
           level: state.level + 1,
           stats: {
             ...state.stats,
-            [stat]: state.stats[stat] + 20
+            [statInit]: state.stats[statInit] + 20
           }
         }
       } else {
@@ -79,12 +79,12 @@ const player = (state = initialState, action) => {
           level: state.level + 1,
           stats: {
             ...state.stats,
-            [stat]: state.stats[stat] + 1
+            [statInit]: state.stats[statInit] + 1
           }
         }
       }
     case 'LEVEL_UP':
-      var stat = action.statIncrease
+      let stat = action.statIncrease
       if (stat === 'maxHealth') {
         return {
           ...state,
