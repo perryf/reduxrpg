@@ -2,14 +2,17 @@ import React from 'react'
 import './Player.css'
 
 const Player = ({name, img, health, mana, strength, defense, magic, maxHealth, maxMana, isAttacking, isSpecialing}) => {
+  console.log(img)
   let attackStatus = isAttacking ? "attacking" : "waiting"
   let specialStatus = isSpecialing ? "specialing" : ""
   return(
     <div className="player-container">
-      <img 
+      <div className="img-container">
+        <img 
         className={"player-image " + attackStatus + " " + specialStatus} 
         src={img} 
         alt={name} />
+      </div>
       <h3>{name}</h3>
       <div className="status-bar" style={{width: maxHealth + "px"}}>
         <div className="player-health" style={{width: health + "px"}}></div>

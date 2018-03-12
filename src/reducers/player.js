@@ -1,6 +1,6 @@
 const initialState = {
-  'name': '',
-  'img': 'img/mario_frog.gif',
+  'name': 'NoName McGee',
+  'img': '',
   'health': 100,
   'mana': 2,
   'level': 0,
@@ -60,11 +60,13 @@ const player = (state = initialState, action) => {
         mana: state.mana - 1
       }
     case 'INTRO_SUBMIT':
-      let statInit = action.payload.statIncrease
+      let statInit = action.payload.stat
+      let name = action.payload.name || state.name
       if (statInit === 'maxHealth') {
         return {
           ...state,
-          name: action.payload.name,
+          name: name,
+          img: action.payload.img,
           health: state.health + 20,
           level: state.level + 1,
           stats: {
@@ -75,7 +77,8 @@ const player = (state = initialState, action) => {
       } else {
         return {
           ...state,
-          name: action.payload.name,
+          name: name,
+          img: action.payload.img,
           level: state.level + 1,
           stats: {
             ...state.stats,

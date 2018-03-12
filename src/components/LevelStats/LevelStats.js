@@ -136,11 +136,13 @@ class LevelStats extends Component {
             }
           </div> : <div></div>
         }
-        <div>{playerHealAmt}</div>
-        <div>{playerDmgTaken}</div>
-        <div>{playerHitCrit} {enemyDmgTaken}</div>
-        <div>{enemyFallen}</div>
-        <div>{nextButton}</div>
+        <div className="action-text">
+          <div>{playerHealAmt}</div>
+          <div>{playerDmgTaken}</div>
+          <div>{playerHitCrit} {enemyDmgTaken}</div>
+          <div>{enemyFallen}</div>
+          <div>{nextButton}</div>
+        </div>
       </div>
     )
   }

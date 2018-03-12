@@ -6,6 +6,37 @@ class IntroScreen extends Component {
     super(props)
   }
 
+  pickCharacter(stat) {
+    let imgSrc = ''
+      switch (stat) {
+        case 'strength':
+          imgSrc='mario_fire.png'
+          break
+        case 'defense':
+          imgSrc='mario_hammer.gif'
+          break
+        case 'magic':
+          imgSrc='mario_tanooki.gif'
+          break
+        case 'maxHealth':
+          imgSrc='mario_frog.gif'
+          break
+        case 'random':
+          imgSrc='mario_luigi.png'
+          break
+        case 'plain':
+          imgSrc='mario_plain.png'
+          break
+        case 'shoe':
+          imgSrc='mario_shoe.png'
+          break
+        default:
+          console.log('no img found')
+          break
+      }
+    return `img/mario/${imgSrc}`
+  }
+
   render () {
     return (
       <div>
@@ -15,38 +46,11 @@ class IntroScreen extends Component {
           e.preventDefault()
           console.log(e.target.playerName.value)
           console.log(e.target.skills.value)
-          let imgSrc = ''
-          switch (e.target.skills.value) {
-            case 'strength':
-              imgSrc='mario_fire.png'
-              break
-            case 'defense':
-              imgSrc='mario_hammer.png'
-              break
-            case 'magic':
-              imgSrc='mario_tanooki.png'
-              break
-            case 'maxHealth':
-              imgSrc='mario_frog.png'
-              break
-            case 'random':
-              imgSrc='mario_luigi.png'
-              break
-            case 'plain':
-              imgSrc='mario_plain.png'
-              break
-            case 'shoe':
-              imgSrc='mario_shoe.png'
-              break
-            default:
-              console.log('no img found')
-              break
-          }
-          let fullImgSrc = `img/${imgSrc}`
-          console.log(fullImgSrc)
+          console.log(this.pickCharacter(e.target.skills.value))
           this.props.introSubmit(
             e.target.playerName.value, 
-            e.target.skills.value
+            e.target.skills.value,
+            this.pickCharacter(e.target.skills.value)
           )} 
         )}>
           <div>

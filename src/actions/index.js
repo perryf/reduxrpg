@@ -59,11 +59,12 @@ export const nextEnemy = (level) => ({
   type: 'NEXT_ENEMY'
 })
 
-export const introSubmit = (name, stat) => ({
+export const introSubmit = (name, stat, img) => ({
   type: 'INTRO_SUBMIT',
   payload: {
-    name: name,
-    statIncrease: stat
+    name,
+    stat,
+    img
   }
 })
 

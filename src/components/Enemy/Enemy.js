@@ -15,11 +15,13 @@ class Enemy extends Component {
         {
           this.props.health > 0 ?
             <div className="enemy-info">
-              <img 
-                src={this.props.img} 
-                alt={this.props.name} 
-                className={"enemy-image " + attackStatus + " " + specialStatus}
-              />
+              <div className="img-container">
+                <img 
+                  src={this.props.img} 
+                  alt={this.props.name} 
+                  className={"enemy-image " + attackStatus + " " + specialStatus}
+                />
+              </div>
               <h3>{this.props.name}</h3>
               <div className="health-bar">
                 <div

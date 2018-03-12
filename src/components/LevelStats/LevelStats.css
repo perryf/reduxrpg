@@ -1,27 +1,40 @@
-.level-stats {
-    font-size: 12px;
+.action-text {
+  font-size: 1.2em;
 }
 
 .action-buttons {
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .action-button {
-    margin: 6px;
+  min-width: 80px;
+  font-size: 1.1em;
+  margin: 6px;
 }
 
 .fake-button {
-    background: lightgrey;
+  background: lightgrey;
 }
 
 .attack-button {
-    background: lightcoral;
+  background: lightcoral;
 }
 
 .special-button {
-    background: lightblue;
+  background: lightblue;
+}
+
+@media (max-width: 670px) {
+  .action-button {
+    font-size: 0.8em;
+    margin: 6px 0;
+  }
+
+  .action-text {
+    font-size: 0.9em;
+  }
 }
