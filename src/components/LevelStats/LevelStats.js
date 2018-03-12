@@ -118,14 +118,14 @@ class LevelStats extends Component {
                     className="action-button special-button"
                     onClick={() => this.handleSpecial()}
                   >Special Attack (1 Mana)</button> :
-                  <button className="no-mana">Out of Mana!</button>
+                  <button className="no-mana action-button">Out of Mana!</button>
                 }
                 {this.props.playerMana > 0 ?
                   <button
                     className="action-button special-button"
                     onClick={() => this.handleHeal()}
                   >Heal (1 Mana)</button> :
-                  <button className="no-mana">Out of Mana!</button>
+                  <button className="no-mana action-button">Out of Mana!</button>
                 } 
               </div> : 
               <div className="action-buttons">
