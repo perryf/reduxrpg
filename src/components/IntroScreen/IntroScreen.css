@@ -1,4 +1,4 @@
-label > input {
+.intro-form > input {
   margin: 0;
   width: 0;
   padding: 0;
@@ -7,18 +7,19 @@ label > input {
   position: absolute;
 }
 
-label > div {
+.intro-form  > div {
   cursor: pointer;
   border: 2px solid #444444;
   box-shadow: 4px 4px black;
   transition: 1s;
 }
 
-label > input:checked + div {
+.intro-form  > input:checked + div {
   border: 2px solid black;
-  background: #999999;
+  background: #AAAAAA;
   box-shadow: 1px 1px black;
-  transition: 1s;
+  transform: translate(3px, 3px);
+  transition: 0.7s;
 }
 
 .intro-selections {
@@ -29,7 +30,7 @@ label > input:checked + div {
 }
 
 .intro-img-box {
-  background: #BBBBBB;
+  background: #CCCCCC;
   width: 100px;
   height: 100px;
   padding: 0;
