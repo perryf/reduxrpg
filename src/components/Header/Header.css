@@ -1,3 +1,17 @@
-h1 {
+.header {
+  font-size: 12px;
+  color: #111111;
   text-align: center;
+  cursor: default;
+  margin: 0 auto;
+  width: 250px;
+}
+
+.header h1 {
+  font-size: 16px;
+}
+
+.header:hover {
+  color: white;
+  transition: 1s;
 }

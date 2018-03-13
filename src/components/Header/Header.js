@@ -3,8 +3,9 @@ import './Header.css'
 
 const Header = () => {
   return(
-    <div>
+    <div className="header">
       <h1>Redux RPG</h1>
+      <h3>made by Perry Fustero</h3>
     </div>
   )
 }

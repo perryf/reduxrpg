@@ -1,6 +1,6 @@
 .fight-screen {
   max-width: 800px;
-  height: 500px;
+  min-height: 500px;
   background: papayawhip;
   border: 1px solid black;
   margin: 0 auto;

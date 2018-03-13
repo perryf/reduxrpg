@@ -9,7 +9,7 @@ initialEnemy.counter = 0
 const enemy = (state = initialEnemy, action) => {
   switch (action.type) {
     case 'INCREASE_ENEMY_COUNTER':
-      console.log('counter test')
+      console.log(state.counter)
       return {
         ...state,
         counter: ++state.counter
@@ -40,13 +40,12 @@ const enemy = (state = initialEnemy, action) => {
         return state
       }
     case 'NEXT_ENEMY':
-      // counter += 1
-      let counter = state.counter
-      if (data[counter]) {
-        return Object.assign({}, data[counter], {
-          health: data[counter].stats.maxHealth,
+      if (data[state.counter]) {
+        return Object.assign({}, data[state.counter], {
+          health: data[state.counter].stats.maxHealth,
           isAttacking: false,
-          isSpecialing: false
+          isSpecialing: false,
+          counter: state.counter
         })
       } else {
         return state

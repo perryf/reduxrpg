@@ -31,7 +31,7 @@ class IntroScreen extends Component {
           imgSrc='mario_shoe.png'
           break
         default:
-          console.log('no img found')
+          imgSrc='mario_plain.png'
           break
       }
     return `img/mario/${imgSrc}`
@@ -44,18 +44,14 @@ class IntroScreen extends Component {
         <p>Choose your name and a stat to increase</p>
         <form onSubmit={((e) => {
           e.preventDefault()
-          console.log(e.target.playerName.value)
-          console.log(e.target.skills.value)
-          console.log(this.pickCharacter(e.target.skills.value))
           this.props.introSubmit(
             e.target.playerName.value, 
             e.target.skills.value,
             this.pickCharacter(e.target.skills.value)
           )} 
         )}>
-          <div>
-            <label>Name</label>
-            <input type="text" name="playerName"/>
+          <div className="intro-name">
+            <input type="text" name="playerName" placeholder="Your Name"/>
           </div>
           <div className="intro-selections">
             <div className="intro-selection">
@@ -122,7 +118,7 @@ class IntroScreen extends Component {
               </label>
             </div>
           </div>
-          <input type="submit" value="submit"/>
+          <input className="intro-submit" type="submit" value="submit"/>
         </form>
       </div>
     )

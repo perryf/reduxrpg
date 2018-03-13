@@ -69,7 +69,7 @@
   },
   {
     "name": "Crabmeat",
-    "img": "https://vignette.wikia.nocookie.net/sonic/images/4/42/Ganigani.gif/revision/latest?cb=20100725214739",
+    "img": "img/crabmeat.gif",
     "moves": {
       "attack": 10,
       "energyBall": 10
