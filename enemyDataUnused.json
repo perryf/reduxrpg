@@ -1,0 +1,16 @@
+ [ 
+  {
+    "name": "Koopa Troopa",
+    "img": "img/koopatroopa.gif",
+    "moves": {
+      "attack": 10,
+      "specialAttack": 10
+    },
+    "stats": {
+      "maxHealth": 80,
+      "strength": 1,
+      "defense": 3,
+      "magic": 1
+    }
+  }
+]

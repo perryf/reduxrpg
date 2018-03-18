@@ -40,6 +40,7 @@ class IntroScreen extends Component {
   render () {
     return (
       <div>
+        <img src="img/poppybrossr.gif"/>
         <h3>Welcome to Redux RPG!</h3>
         <p>Choose your name and a stat to increase</p>
         <form onSubmit={((e) => {
