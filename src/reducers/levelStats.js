@@ -24,7 +24,7 @@ const levelStats = (state = initialState, action) => {
       } else {
         return {
           ...state,
-          enemyDmgTaken: action.damage,
+          enemyDmgTaken: action.damage * 2,
           playerHealAmt: 0,
           playerHitCrit: true,
           enemysTurn: true

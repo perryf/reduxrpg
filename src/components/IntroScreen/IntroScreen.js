@@ -6,35 +6,64 @@ class IntroScreen extends Component {
     super(props)
   }
 
-  pickCharacter(stat) {
+  pickCharacter(choice, result) {
     let imgSrc = ''
-      switch (stat) {
+    let stat = ''
+      switch (choice) {
         case 'fire':
-          imgSrc='mario_fire.png'
+          imgSrc = 'mario_fire.png'
+          stat = 'strength'
           break
         case 'hammer':
-          imgSrc='mario_hammer.gif'
+          imgSrc = 'mario_hammer.gif'
+          stat = 'defense'
           break
         case 'tanooki':
-          imgSrc='mario_tanooki.gif'
+          imgSrc = 'mario_tanooki.gif'
+          stat = 'magic'
           break
         case 'frog':
-          imgSrc='mario_frog.gif'
+          imgSrc = 'mario_frog.gif'
+          stat = 'maxHealth'
           break
         case 'luigi':
-          imgSrc='mario_luigi.png'
+          imgSrc = 'mario_luigi.png'
+          stat = this.luigiRandomizer()
           break
         case 'plain':
-          imgSrc='mario_plain.png'
+          imgSrc = 'mario_plain.png'
           break
         case 'shoe':
-          imgSrc='mario_shoe.png'
+          imgSrc = 'mario_shoe.png'
+          stat = 'maxMana'
           break
         default:
-          imgSrc='mario_plain.png'
+          imgSrc = 'mario_plain.png'
           break
       }
-    return `img/mario/${imgSrc}`
+    if (result === 'imgName') return `img/mario/${imgSrc}`
+    else if (result === 'stat') return stat
+  }
+
+  luigiRandomizer() {
+    let randomNum = Math.ceil(Math.random() * 4)
+    switch (randomNum) {
+      case 1:
+        return 'strength' 
+        break
+      case 2:
+        return 'defense'
+        break
+      case 3:
+        return 'magic'
+        break
+      case 4:
+        return 'maxHealth'
+        break
+      default:
+        return 'strength'
+        break
+    }
   }
 
   handleName(e) {
@@ -54,8 +83,8 @@ class IntroScreen extends Component {
           e.preventDefault()
           this.props.introSubmit(
             e.target.playerName.value, 
-            e.target.skills.value,
-            this.pickCharacter(e.target.skills.value),
+            this.pickCharacter(e.target.skills.value, 'stat'),
+            this.pickCharacter(e.target.skills.value, 'imgName'),
             e.target.skills.value
           )} 
         )}>
@@ -126,7 +155,7 @@ class IntroScreen extends Component {
               <label className="intro-form">
                 <input type="radio" name="skills" value="shoe" onClick={e => this.handleChoice(e)}/>
                 <div className="intro-img-box">
-                  <h4>Bonus?</h4>
+                  <h4>Max Mana</h4>
                   <img src="img/mario/mario_shoe.png" alt="shoe mario"/>
                 </div>
               </label>

@@ -25,13 +25,13 @@ export const playerAttacks = (attackPow, strength, defense, crit) => ({
   type: 'PLAYER_ATTACKS',
   crit,
   damage: Math.ceil(((Math.pow(strength, 0.8) * attackPow) / Math.pow(defense, 0.6)) +
-    ((Math.pow(strength, 0.8) * (attackPow * 0.5)) * Math.random()) / Math.pow(defense, 0.6))
+    ((Math.pow(strength, 0.4) * attackPow * Math.random()) / Math.pow(defense, 0.6)))
 })
 
 export const playerSpecials = (attackPow, magic, level) => ({
   type: 'PLAYER_SPECIALS',
-  damage: Math.ceil((Math.pow(magic, 0.4) * attackPow * Math.pow(level, 0.2)) +
-    ((Math.pow(magic, 0.2) * attackPow) * Math.random()))
+  damage: Math.ceil((Math.pow(magic, 0.5) * attackPow) +
+    ((Math.pow(magic, 0.25) * attackPow * Math.random())))
 })
 
 export const playerHeals = (currentHealth, maxHealth, magic) => ({
