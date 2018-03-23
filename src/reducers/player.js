@@ -1,12 +1,14 @@
 const initialState = {
   'name': 'NoName McGee',
   'img': '',
+  'imgName': '',
   'health': 100,
   'mana': 2,
   'level': 0,
   'alive': true,
   'isAttacking': false,
   'isSpecialing': false,
+  'isHealing': false,
   'moves': {
     'attack': 10,
     'special': 10
@@ -60,13 +62,14 @@ const player = (state = initialState, action) => {
         mana: state.mana - 1
       }
     case 'INTRO_SUBMIT':
-      let statInit = action.payload.stat
-      let name = action.payload.name || state.name
+      let statInit = action.stat
+      let name = action.name || state.name
       if (statInit === 'maxHealth') {
         return {
           ...state,
           name: name,
-          img: action.payload.img,
+          img: action.img,
+          imgName: action.imgName,
           health: state.health + 20,
           level: state.level + 1,
           stats: {
@@ -78,7 +81,8 @@ const player = (state = initialState, action) => {
         return {
           ...state,
           name: name,
-          img: action.payload.img,
+          img: action.img,
+          imgName: action.imgName,
           level: state.level + 1,
           stats: {
             ...state.stats,
@@ -145,6 +149,16 @@ const player = (state = initialState, action) => {
     return {
       ...state,
       isSpecialing: false
+    }
+    case 'PLAYER_START_HEAL_PHASE':
+      return {
+        ...state,
+        isHealing: true
+      }
+    case 'PLAYER_END_HEAL_PHASE':
+    return {
+      ...state,
+      isHealing: false
     }
     default:
       return state

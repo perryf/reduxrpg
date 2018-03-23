@@ -32,28 +32,28 @@ class LevelStats extends Component {
     }, 1000)
   }
 
-  handleHeal() {
-    this.props.playerHeals(
-      this.props.playerHealth,
-      this.props.playerMaxHealth,
-      this.props.playerMagic
-    ), 
-    this.props.playerStartSpecialPhase()
+  handleSpecial() {
+    this.props.playerSpecials(
+      this.props.playerSpecial,
+      this.props.playerMagic,
+      this.props.playerLevel
+    ), this.props.playerStartSpecialPhase()
     this.handleEnemyResponse()
     setTimeout(() => {
       this.props.playerEndSpecialPhase()
     }, 1000)
   }
 
-  handleSpecial() {
-    this.props.playerSpecials(
-      this.props.playerSpecial,
-      this.props.playerMagic,
-      this.props.playerLevel
-    ), this.props.playerStartAttackPhase()
+  handleHeal() {
+    this.props.playerHeals(
+      this.props.playerHealth,
+      this.props.playerMaxHealth,
+      this.props.playerMagic
+    ), 
+    this.props.playerStartHealPhase()
     this.handleEnemyResponse()
     setTimeout(() => {
-      this.props.playerEndAttackPhase()
+      this.props.playerEndHealPhase()
     }, 1000)
   }
 
@@ -101,40 +101,44 @@ class LevelStats extends Component {
     let nextButton = this.props.isLevelingUp ?
       <LevelUpWrapper /> : ""
     let isDead = this.props.playerHealth <= 0 ?
-      <p>You are dead!</p> : ""
+      <h2>You are dead!</h2> : ""
     return (
       <div className="level-stats">
-        {isDead}
-        {this.props.enemyHealth > 0 ?
+        {isDead ? 
+          isDead :
           <div>
-            {!this.props.enemysTurn ?
-              <div className="action-buttons">
-                <button
-                  className="action-button attack-button"
-                  onClick={() => this.handleAttack()}
-                >Attack</button>
-                {this.props.playerMana > 0 ?
-                  <button
-                    className="action-button special-button"
-                    onClick={() => this.handleSpecial()}
-                  >Special Attack (1 Mana)</button> :
-                  <button className="no-mana action-button">Out of Mana!</button>
+            {this.props.enemyHealth > 0 ?
+              <div>
+                {!this.props.enemysTurn ?
+                  <div className="action-buttons">
+                    <button
+                      className="action-button attack-button"
+                      onClick={() => this.handleAttack()}
+                    >Attack</button>
+                    {this.props.playerMana > 0 ?
+                      <button
+                        className="action-button special-button"
+                        onClick={() => this.handleSpecial()}
+                      >Special Attack (1 Mana)</button> :
+                      <button className="no-mana action-button">Out of Mana!</button>
+                    }
+                    {this.props.playerMana > 0 ?
+                      <button
+                        className="action-button special-button"
+                        onClick={() => this.handleHeal()}
+                      >Heal (1 Mana)</button> :
+                      <button className="no-mana action-button">Out of Mana!</button>
+                    } 
+                  </div> : 
+                  <div className="action-buttons">
+                    <button className="fake-button action-button">Attack</button>
+                    <button className="fake-button action-button">Special Attack (1 Mana)</button>
+                    <button className="fake-button action-button">Heal (1 Mana)</button>
+                  </div>
                 }
-                {this.props.playerMana > 0 ?
-                  <button
-                    className="action-button special-button"
-                    onClick={() => this.handleHeal()}
-                  >Heal (1 Mana)</button> :
-                  <button className="no-mana action-button">Out of Mana!</button>
-                } 
-              </div> : 
-              <div className="action-buttons">
-                <button className="fake-button action-button">Attack</button>
-                <button className="fake-button action-button">Special Attack (1 Mana)</button>
-                <button className="fake-button action-button">Heal (1 Mana)</button>
-              </div>
+              </div> : <div></div>
             }
-          </div> : <div></div>
+          </div>
         }
         <div className="action-text">
           <div>{playerHealAmt}</div>

@@ -9,19 +9,19 @@ class IntroScreen extends Component {
   pickCharacter(stat) {
     let imgSrc = ''
       switch (stat) {
-        case 'strength':
+        case 'fire':
           imgSrc='mario_fire.png'
           break
-        case 'defense':
+        case 'hammer':
           imgSrc='mario_hammer.gif'
           break
-        case 'magic':
+        case 'tanooki':
           imgSrc='mario_tanooki.gif'
           break
-        case 'maxHealth':
+        case 'frog':
           imgSrc='mario_frog.gif'
           break
-        case 'random':
+        case 'luigi':
           imgSrc='mario_luigi.png'
           break
         case 'plain':
@@ -37,10 +37,17 @@ class IntroScreen extends Component {
     return `img/mario/${imgSrc}`
   }
 
+  handleName(e) {
+    this.props.introChooseName(e.target.value)
+  }
+
+  handleChoice(e) {
+    this.props.introChooseCharacter(e.target.value)
+  }
+
   render () {
     return (
       <div>
-        <img src="img/poppybrossr.gif"/>
         <h3>Welcome to Redux RPG!</h3>
         <p>Choose your name and a stat to increase</p>
         <form onSubmit={((e) => {
@@ -48,16 +55,22 @@ class IntroScreen extends Component {
           this.props.introSubmit(
             e.target.playerName.value, 
             e.target.skills.value,
-            this.pickCharacter(e.target.skills.value)
+            this.pickCharacter(e.target.skills.value),
+            e.target.skills.value
           )} 
         )}>
           <div className="intro-name">
-            <input type="text" name="playerName" placeholder="Your Name"/>
+            <input 
+              type="text" 
+              name="playerName" 
+              placeholder="Your Name" 
+              onChange={e => this.handleChoice(e)}
+            />
           </div>
           <div className="intro-selections">
             <div className="intro-selection">
               <label className="intro-form">
-                <input type="radio" name="skills" value="strength"/>
+                <input type="radio" name="skills" value="fire" onClick={e => this.handleChoice(e)}/>
                 <div className="intro-img-box">
                   <h4>Strength</h4>
                   <img src="img/mario/mario_fire.png" alt="fire mario"/>
@@ -66,7 +79,7 @@ class IntroScreen extends Component {
             </div>
             <div className="intro-selection">
               <label className="intro-form">
-                <input type="radio" name="skills" value="defense"/>
+                <input type="radio" name="skills" value="hammer" onClick={e => this.handleChoice(e)}/>
                 <div className="intro-img-box">
                   <h4>Defense</h4>
                   <img src="img/mario/mario_hammer.gif" alt="hammer mario"/>
@@ -75,7 +88,7 @@ class IntroScreen extends Component {
             </div>
             <div className="intro-selection">
               <label className="intro-form">
-                <input type="radio" name="skills" value="magic"/>
+                <input type="radio" name="skills" value="tanooki" onClick={e => this.handleChoice(e)}/>
                 <div className="intro-img-box">
                   <h4>Magic</h4>
                   <img src="img/mario/mario_tanooki.gif" alt="tanooki mario"/>
@@ -84,7 +97,7 @@ class IntroScreen extends Component {
             </div>
             <div className="intro-selection">
               <label className="intro-form">
-                <input type="radio" name="skills" value="maxHealth"/>
+                <input type="radio" name="skills" value="frog" onClick={e => this.handleChoice(e)}/>
                 <div className="intro-img-box">
                   <h4>Max Health</h4>
                   <img src="img/mario/mario_frog.gif" alt="frog mario"/>
@@ -93,7 +106,7 @@ class IntroScreen extends Component {
             </div>
             <div className="intro-selection">
               <label className="intro-form">
-                <input type="radio" name="skills" value="random"/>
+                <input type="radio" name="skills" value="luigi" onClick={e => this.handleChoice(e)}/>
                 <div className="intro-img-box">
                   <h4>Random Stat</h4>
                   <img src="img/mario/mario_luigi.png" alt="luigi"/>
@@ -102,7 +115,7 @@ class IntroScreen extends Component {
             </div>
             <div className="intro-selection">
               <label className="intro-form">
-                <input type="radio" name="skills" value="plain"/>
+                <input type="radio" name="skills" value="plain" onClick={e => this.handleChoice(e)}/>
                 <div className="intro-img-box">
                   <h4>Plain (No stat increase)</h4>
                   <img src="img/mario/mario_plain.png" alt="plain mario"/>
@@ -111,7 +124,7 @@ class IntroScreen extends Component {
             </div>
             <div className="intro-selection">
               <label className="intro-form">
-                <input type="radio" name="skills" value="shoe"/>
+                <input type="radio" name="skills" value="shoe" onClick={e => this.handleChoice(e)}/>
                 <div className="intro-img-box">
                   <h4>Bonus?</h4>
                   <img src="img/mario/mario_shoe.png" alt="shoe mario"/>

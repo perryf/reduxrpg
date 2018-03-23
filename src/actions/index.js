@@ -1,6 +1,24 @@
+export const introSubmit = (name, stat, img, imgName) => ({
+  type: 'INTRO_SUBMIT',
+  name,
+  stat,
+  img,
+  imgName
+})
+
+export const introChooseCharacter = character => ({
+  type: 'INTRO_CHOOSE_CHARACTER',
+  character
+})
+
+export const introChooseName = name => ({
+  type: 'INTRO_CHOOSE_NAME',
+  name
+})
+
 export const playerAttacks = (attackPow, strength, defense, crit) => ({
   type: 'PLAYER_ATTACKS',
-  crit: crit,
+  crit,
   damage: Math.ceil(((Math.pow(strength, 0.8) * attackPow) / Math.pow(defense, 0.6)) +
     ((Math.pow(strength, 0.8) * (attackPow * 0.5)) * Math.random()) / Math.pow(defense, 0.6))
 })
@@ -13,8 +31,8 @@ export const playerSpecials = (attackPow, magic, level) => ({
 
 export const playerHeals = (currentHealth, maxHealth, magic) => ({
   type: 'PLAYER_HEALS',
-  currentHealth: currentHealth,
-  maxHealth: maxHealth,
+  currentHealth,
+  maxHealth,
   healAmt: Math.ceil((Math.pow(magic, 0.2) * (maxHealth * 0.5)) +
     (Math.pow(magic, 0.2) * (maxHealth * 0.1) * Math.random()))
 })
@@ -29,6 +47,10 @@ export const playerStartSpecialPhase = () => ({type: 'PLAYER_START_SPECIAL_PHASE
 
 export const playerEndSpecialPhase = () => ({type: 'PLAYER_END_SPECIAL_PHASE'})
 
+export const playerStartHealPhase = () => ({type: 'PLAYER_START_HEAL_PHASE'})
+
+export const playerEndHealPhase = () => ({type: 'PLAYER_END_HEAL_PHASE'})
+
 export const enemyStartAttackPhase = () => ({type: 'ENEMY_START_ATTACK_PHASE'})
 
 export const enemyEndAttackPhase = () => ({type: 'ENEMY_END_ATTACK_PHASE'})
@@ -39,14 +61,14 @@ export const enemyEndSpecialPhase = () => ({type: 'ENEMY_END_SPECIAL_PHASE'})
 
 export const enemyAttacks = (attackPow, strength, defense, enemyHealth) => ({
   type: 'ENEMY_ATTACKS',
-  enemyHealth: enemyHealth,
+  enemyHealth,
   damage: Math.ceil(((Math.pow(strength, 0.6) * attackPow) / Math.pow(defense, 0.6)) +
     ((Math.pow(strength, 0.6) * (attackPow * 0.5)) * Math.random()) / Math.pow(defense, 0.6))
 })
 
 export const enemySpecials = (attackPow, magic, enemyHealth) => ({
   type: 'ENEMY_SPECIALS',
-  enemyHealth: enemyHealth,
+  enemyHealth,
   damage: Math.ceil((Math.pow(magic, 0.6) * attackPow) +
     ((Math.pow(magic, 0.2) * attackPow) * Math.random()))
 })
@@ -59,20 +81,11 @@ export const nextEnemy = (level) => ({
   type: 'NEXT_ENEMY'
 })
 
-export const introSubmit = (name, stat, img) => ({
-  type: 'INTRO_SUBMIT',
-  payload: {
-    name,
-    stat,
-    img
-  }
-})
-
 export const needsLevelUp = () => ({
   type: 'NEEDS_LEVEL_UP'
 })
 
-export const levelUp = (stat) => ({
+export const levelUp = (statIncrease) => ({
   type: 'LEVEL_UP',
-  statIncrease: stat
+  statIncrease
 })

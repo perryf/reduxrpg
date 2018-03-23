@@ -1,11 +1,13 @@
 import {connect} from 'react-redux'
 import IntroScreen from '../components/IntroScreen/IntroScreen'
-import {introSubmit} from '../actions'
+import {introChooseName, introChooseCharacter, introSubmit} from '../actions'
 
 const mapStateToProps = () => ({
 })
 
 const mapDispatchToProps = {
+  introChooseName,
+  introChooseCharacter,
   introSubmit
 }
 
