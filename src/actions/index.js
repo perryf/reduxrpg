@@ -16,6 +16,11 @@ export const introChooseName = name => ({
   name
 })
 
+export const levelUpStatChoose = stat => ({
+  type: 'LEVEL_UP_STAT_CHOOSE',
+  stat
+})
+
 export const playerAttacks = (attackPow, strength, defense, crit) => ({
   type: 'PLAYER_ATTACKS',
   crit,

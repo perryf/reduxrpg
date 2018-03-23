@@ -6,24 +6,26 @@
   padding: 20px 0 0;
   height: 100px;
   margin: 0;
-  transition: 800ms;
+  transition: 500ms;
 }
 
 .attacking {
   transform: translateX(50px);
+  transition: 500ms;
 }
 
 .specialing {
-  filter: blur(100px)
+  filter: blur(100px);
+  transition: 500ms;
 }
 
 .specialing-fire {
-  background: radial-gradient(circle, red 80%, transparent 20%);
+  background: radial-gradient(circle, red 50%, transparent 20%);
   transform: scale(5, 0.05) translate(80px, 40px);
 }
 
 .specialing-tanooki {
-  transform: rotateY(360deg)
+  transform: rotateY(360deg);
 }
 
 .specialing-frog {
@@ -32,16 +34,16 @@
 }
 
 .specialing-hammer {
-  transform: scale(10, 10) translate(10px, 10px)
+  transform: scale(10, 10) translate(10px, 10px);
 }
 
 .specialing-luigi {
   transform: skew(-40deg, 0);
-  filter: blur(1px) contrast(600%) hue-rotate(90deg) 
+  filter: blur(1px) contrast(600%) hue-rotate(90deg);
 }
 
 .specialing-shoe {
-  filter: drop-shadow(80px 0 5px white) invert(100%)
+  filter: drop-shadow(80px 0 5px white) invert(100%);
 }
 
 .healing {

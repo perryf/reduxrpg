@@ -6,6 +6,10 @@ class LevelUp extends Component {
     super(props)
   }
 
+  handleStatChoice(e) {
+    this.props.levelUpStatChoose(e.target.value)
+  }
+
   render () {
     return (
       <div>
@@ -14,19 +18,39 @@ class LevelUp extends Component {
         <form>
           <div>
             <label>Strength</label>
-            <input type="radio" name="skills" value="strength"/>
+            <input 
+              type="radio" 
+              name="skills" 
+              value="strength" 
+              onClick={e => this.handleStatChoice(e)}
+            />
           </div>
           <div>
             <label>Defense</label>
-            <input type="radio" name="skills" value="defense"/>
+            <input 
+              type="radio" 
+              name="skills" 
+              value="defense"
+              onClick={e => this.handleStatChoice(e)}
+            />
           </div>
           <div>
             <label>Magic</label>
-            <input type="radio" name="skills" value="magic"/>
+            <input 
+              type="radio" 
+              name="skills" 
+              value="magic"
+              onClick={e => this.handleStatChoice(e)}
+            />
           </div>
           <div>
             <label>Max Health</label>
-            <input type="radio" name="skills" value="maxHealth"/>
+            <input 
+              type="radio" 
+              name="skills" 
+              value="maxHealth"
+              onClick={e => this.handleStatChoice(e)}
+            />
           </div>
           <input
             type="button"
