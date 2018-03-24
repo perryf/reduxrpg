@@ -1,5 +1,39 @@
 .action-text {
-  font-size: 1.2em;
+  font-size: 1em;
+  /* font-family: 'Courier New', Courier, monospace; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.enemy-text {
+  order: 1;
+  padding-left: 20px;
+}
+
+.player-text {
+  order: 0;
+  padding-right: 20px;
+}
+
+@keyframes textfade {
+  0% {opacity: 0;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.damage-text {
+  color: red;
+  animation: textfade 3s infinite;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
+}
+
+.heal-text {
+  color: green;
+  animation: textfade 3s infinite;
+  animation-fill-mode: forwards;
+  animation-direction: alternate;
 }
 
 .action-buttons {

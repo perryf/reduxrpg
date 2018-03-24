@@ -11,7 +11,8 @@ const initialState = {
   'isHealing': false,
   'moves': {
     'attack': 10,
-    'special': 10
+    'special': 10,
+    'heal': 50
   },
   'stats': {
     'maxHealth': 100,
@@ -128,6 +129,7 @@ const player = (state = initialState, action) => {
     case 'PLAYER_DIES': 
       return {
         ...state,
+        health: 0,
         alive: false
       }
     case 'PLAYER_START_ATTACK_PHASE':

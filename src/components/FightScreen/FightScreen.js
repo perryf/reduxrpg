@@ -14,9 +14,9 @@ const FightScreen = ({isPlaying}) => {
           <div className="character">
             <PlayerWrapper />
           </div>
-            <div className="combat-buttons">
-              <LevelStatsWrapper />
-            </div>
+          <div className="combat-buttons">
+            <LevelStatsWrapper />
+          </div>
           <div className="character">
             <EnemyWrapper />
           </div>

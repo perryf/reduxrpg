@@ -30,16 +30,16 @@ export const playerAttacks = (attackPow, strength, defense, crit) => ({
 
 export const playerSpecials = (attackPow, magic, level) => ({
   type: 'PLAYER_SPECIALS',
-  damage: Math.ceil((Math.pow(magic, 0.5) * attackPow) +
-    ((Math.pow(magic, 0.25) * attackPow * Math.random())))
+  damage: Math.ceil((Math.pow(magic, 0.8) * attackPow) +
+    ((Math.pow(magic, 0.2) * attackPow * Math.random())))
 })
 
 export const playerHeals = (currentHealth, maxHealth, magic) => ({
   type: 'PLAYER_HEALS',
   currentHealth,
   maxHealth,
-  healAmt: Math.ceil((Math.pow(magic, 0.2) * (maxHealth * 0.5)) +
-    (Math.pow(magic, 0.2) * (maxHealth * 0.1) * Math.random()))
+  healAmt: Math.ceil((Math.pow(magic, 0.1) * (maxHealth * 0.5)) +
+    (Math.pow(magic, 0.1) * (maxHealth * 0.1) * Math.random()))
 })
 
 export const playerDies = () => ({type: 'PLAYER_DIES'})

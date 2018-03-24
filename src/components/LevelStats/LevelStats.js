@@ -88,64 +88,80 @@ class LevelStats extends Component {
   }
 
   render() {
+    let playerHitCrit = this.props.playerHitCrit ?
+      `${<br/>} Critial Hit!` : ''
     let enemyDmgTaken = this.props.enemyDmgTaken ?
-      `${this.props.enemyName} Took ${this.props.enemyDmgTaken} Damage! ` : null
-      let playerHitCrit = this.props.playerHitCrit ?
-      "Critial Hit!" : ""
+      <p className='damage-text'>
+        {this.props.enemyDmgTaken} {playerHitCrit}
+      </p> : ''
     let playerDmgTaken = this.props.playerDmgTaken ?
-      <p>{this.props.playerName} Took {this.props.playerDmgTaken} Damage!</p> : <p></p>
+      <p className='damage-text'>
+        {this.props.playerDmgTaken}
+      </p> : '' 
     let playerHealAmt = this.props.playerHealAmt ?
-      <p>{this.props.playerName} Healed {this.props.playerHealAmt} Health!</p> : <p></p>
+      <p className='heal-text'>
+        {this.props.playerHealAmt}
+      </p> : ''
     let enemyFallen = this.props.enemyHealth <= 0 ?
-      <p>{this.props.enemyName} has fallen!</p> : ""
-    let nextButton = this.props.isLevelingUp ?
-      <LevelUpWrapper /> : ""
+      <p className='damage-text'>
+        {this.props.enemyName} has fallen!
+      </p> : ''
+    let levelUp = this.props.isLevelingUp ?
+      <LevelUpWrapper /> : null
     let isDead = this.props.playerHealth <= 0 ?
-      <h2>You are dead!</h2> : ""
+      <h2>You are dead</h2> : null
     return (
-      <div className="level-stats">
-        {isDead ? 
+      <div className='level-stats'>
+        {isDead ?
           isDead :
           <div>
             {this.props.enemyHealth > 0 ?
               <div>
                 {!this.props.enemysTurn ?
-                  <div className="action-buttons">
+                  <div className='action-buttons'>
                     <button
-                      className="action-button attack-button"
+                      className='action-button attack-button'
                       onClick={() => this.handleAttack()}
                     >Attack</button>
                     {this.props.playerMana > 0 ?
                       <button
-                        className="action-button special-button"
+                        className='action-button special-button'
                         onClick={() => this.handleSpecial()}
                       >Special Attack (1 Mana)</button> :
-                      <button className="no-mana action-button">Out of Mana!</button>
+                      <button className='no-mana action-button'>Out of Mana!</button>
                     }
                     {this.props.playerMana > 0 ?
                       <button
-                        className="action-button special-button"
+                        className='action-button special-button'
                         onClick={() => this.handleHeal()}
                       >Heal (1 Mana)</button> :
-                      <button className="no-mana action-button">Out of Mana!</button>
+                      <button className='no-mana action-button'>Out of Mana!</button>
                     } 
                   </div> : 
-                  <div className="action-buttons">
-                    <button className="fake-button action-button">Attack</button>
-                    <button className="fake-button action-button">Special Attack (1 Mana)</button>
-                    <button className="fake-button action-button">Heal (1 Mana)</button>
+                  <div className='action-buttons'>
+                    <button className='fake-button action-button'>Attack</button>
+                    <button className='fake-button action-button'>Special Attack (1 Mana)</button>
+                    <button className='fake-button action-button'>Heal (1 Mana)</button>
                   </div>
                 }
               </div> : <div></div>
             }
           </div>
         }
-        <div className="action-text">
-          <div>{playerHealAmt}</div>
-          <div>{playerDmgTaken}</div>
-          <div>{playerHitCrit} {enemyDmgTaken}</div>
-          <div>{enemyFallen}</div>
-          <div>{nextButton}</div>
+        {levelUp}
+        <div className='action-text'>
+          <div className='player-text'>
+            {playerHealAmt}
+          </div>
+          <div className='player-text'>
+            {playerDmgTaken}
+          </div>
+          <div className='enemy-text'>
+            {enemyDmgTaken}
+          </div>
+          <div className='enemy-text'>
+            {enemyFallen}
+          </div>
         </div>
       </div>
     )
