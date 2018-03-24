@@ -16,7 +16,32 @@ class LevelStats extends Component {
     }
   }
 
+  enemyTextFade() {
+    let enemyText = Array.from(document.querySelectorAll('.enemy-text'))
+    enemyText.map((el) => {
+      el.classList.remove('hide')
+    })
+    setTimeout(() => {
+      enemyText.map((el) => {
+        el.classList.add('hide')
+      })
+    }, 1500)
+  }
+
+  playerTextFade() {
+    let playerText = Array.from(document.querySelectorAll('.player-text'))
+    playerText.map((el) => {
+      el.classList.remove('hide')
+    })
+    setTimeout(() => {
+      playerText.map((el) => {
+        el.classList.add('hide')
+      })
+    }, 1500)
+  }
+
   handleAttack() {
+    this.enemyTextFade()
     let playerCrit = Math.ceil(Math.random() * 6) === 6
     let enemyCrit = Math.ceil(Math.random() * 6) === 6
     this.props.playerAttacks(
@@ -33,6 +58,7 @@ class LevelStats extends Component {
   }
 
   handleSpecial() {
+    this.enemyTextFade()
     this.props.playerSpecials(
       this.props.playerSpecial,
       this.props.playerMagic,
@@ -45,6 +71,7 @@ class LevelStats extends Component {
   }
 
   handleHeal() {
+    this.enemyTextFade()
     this.props.playerHeals(
       this.props.playerHealth,
       this.props.playerMaxHealth,
@@ -70,6 +97,7 @@ class LevelStats extends Component {
         setTimeout(() => {
           this.props.enemyEndAttackPhase()
         }, 1000)
+        this.playerTextFade()
       }, 1000)
     } else {
       setTimeout(() => {
@@ -83,33 +111,60 @@ class LevelStats extends Component {
         setTimeout(() => {
           this.props.enemyEndAttackPhase()
         }, 1000)
+        this.playerTextFade()
       }, 1000)
     }
   }
 
   render() {
-    let playerHitCrit = this.props.playerHitCrit ?
-      `${<br/>} Critial Hit!` : ''
-    let enemyDmgTaken = this.props.enemyDmgTaken ?
-      <p className='damage-text'>
-        {this.props.enemyDmgTaken} {playerHitCrit}
-      </p> : ''
-    let playerDmgTaken = this.props.playerDmgTaken ?
-      <p className='damage-text'>
-        {this.props.playerDmgTaken}
-      </p> : '' 
-    let playerHealAmt = this.props.playerHealAmt ?
-      <p className='heal-text'>
-        {this.props.playerHealAmt}
-      </p> : ''
-    let enemyFallen = this.props.enemyHealth <= 0 ?
-      <p className='damage-text'>
-        {this.props.enemyName} has fallen!
-      </p> : ''
-    let levelUp = this.props.isLevelingUp ?
-      <LevelUpWrapper /> : null
-    let isDead = this.props.playerHealth <= 0 ?
-      <h2>You are dead</h2> : null
+    let playerHitCrit
+    let enemyDmgTaken
+    let playerDmgTaken
+    let playerHealAmt
+    let enemyFallen
+    let levelUp
+    let isDead
+    this.props.playerHitCrit ?
+      playerHitCrit = <p className='damage-text enemy-text'>Critial Hit!</p> :
+      playerHitCrit = ''
+    this.props.enemyDmgTaken ? (
+      // this.enemyTextFade(),
+      enemyDmgTaken = 
+        <div>
+          <p className='damage-text enemy-text'>
+            {this.props.enemyDmgTaken}
+          </p>
+          {playerHitCrit}
+        </div>
+      ) :
+      enemyDmgTaken = ''
+    this.props.playerDmgTaken ? (
+      // this.playerTextFade(),
+      playerDmgTaken = 
+        <p className='damage-text player-text'>
+          {this.props.playerDmgTaken}
+        </p>) :
+      playerDmgTaken = '' 
+    this.props.playerHealAmt ? (
+      // this.playerTextFade(),
+      playerHealAmt = 
+        <p className='heal-text player-text'>
+          {this.props.playerHealAmt}
+        </p>) : 
+      playerHealAmt = ''
+    this.props.enemyHealth <= 0 ?(
+      // this.enemyTextFade(),
+      enemyFallen =
+        <p className = 'damage-text enemy-text'>
+          {this.props.enemyName} has fallen!
+        </p>) :
+      enemyFallen = ''
+    this.props.isLevelingUp ?
+      levelUp = <LevelUpWrapper /> :
+      levelUp = null
+    this.props.playerHealth <= 0 ?
+      isDead = <h2>You are dead</h2> :
+      isDead = null
     return (
       <div className='level-stats'>
         {isDead ?
@@ -152,15 +207,11 @@ class LevelStats extends Component {
         <div className='action-text'>
           <div className='player-text'>
             {playerHealAmt}
-          </div>
-          <div className='player-text'>
             {playerDmgTaken}
           </div>
           <div className='enemy-text'>
-            {enemyDmgTaken}
-          </div>
-          <div className='enemy-text'>
             {enemyFallen}
+            {enemyDmgTaken}
           </div>
         </div>
       </div>

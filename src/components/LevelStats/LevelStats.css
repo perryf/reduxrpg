@@ -8,33 +8,35 @@
 
 .enemy-text {
   order: 1;
-  padding-left: 20px;
+  min-width: 50px;
 }
 
 .player-text {
   order: 0;
-  padding-right: 20px;
-}
-
-@keyframes textfade {
-  0% {opacity: 0;}
-  50% {opacity: 1;}
-  100% {opacity: 0;}
+  min-width: 50px;
 }
 
 .damage-text {
+  opacity: 1;
   color: red;
-  animation: textfade 3s infinite;
-  animation-fill-mode: forwards;
-  animation-direction: alternate;
+  /* animation: textfade 3s 1; */
 }
 
 .heal-text {
+  opacity: 1;
   color: green;
-  animation: textfade 3s infinite;
-  animation-fill-mode: forwards;
-  animation-direction: alternate;
+  /* animation: textfade 3s 1; */
 }
+
+.hide {
+  opacity: 0;
+}
+
+/* @keyframes textfade {
+  0% {opacity: 0;}
+  50% {opacity: 1;}
+  100% {opacity: 0;}
+} */
 
 .action-buttons {
   margin: 30px 0;
