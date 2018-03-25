@@ -2,10 +2,6 @@ import React, {Component} from 'react'
 import './LevelUp.css'
 
 class LevelUp extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   handleStatChoice(e) {
     this.props.levelUpStatChoose(e.target.value)
   }

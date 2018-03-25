@@ -1,6 +1,6 @@
 const initialState = {
   playerDmgTaken: 0,
-  playerHealAmt: '',
+  playerHealAmt: 0,
   playerHitCrit: false,
   enemyDmgTaken: 0,
   isLevelingUp: false,
@@ -17,7 +17,7 @@ const levelStats = (state = initialState, action) => {
         return {
           ...state,
           enemyDmgTaken: action.damage,
-          playerHealAmt: '',
+          playerHealAmt: 0,
           playerHitCrit: false, 
           enemysTurn: true,
           playerLastMove: 'attack'
@@ -26,7 +26,7 @@ const levelStats = (state = initialState, action) => {
         return {
           ...state,
           enemyDmgTaken: action.damage * 2,
-          playerHealAmt: '',
+          playerHealAmt: 0,
           playerHitCrit: true,
           enemysTurn: true,
           playerLastMove: 'attack'
@@ -36,7 +36,7 @@ const levelStats = (state = initialState, action) => {
       return {
         ...state,
         enemyDmgTaken: action.damage,
-        playerHealAmt: '',
+        playerHealAmt: 0,
         enemysTurn: true,
         playerHitCrit: false,
         playerLastMove: 'special'
@@ -89,7 +89,7 @@ const levelStats = (state = initialState, action) => {
       return {
         ...state,
         playerDmgTaken: 0,
-        playerHealAmt: '',
+        playerHealAmt: 0,
         enemyDmgTaken: 0,
         playerHitCrit: false,
         isLevelingUp: true,

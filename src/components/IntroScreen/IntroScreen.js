@@ -2,10 +2,6 @@ import React, {Component} from 'react'
 import './IntroScreen.css'
 
 class IntroScreen extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   pickCharacter(choice, result) {
     let imgSrc = ''
     let stat = ''
@@ -50,19 +46,14 @@ class IntroScreen extends Component {
     switch (randomNum) {
       case 1:
         return 'strength' 
-        break
       case 2:
         return 'defense'
-        break
       case 3:
         return 'magic'
-        break
       case 4:
         return 'maxHealth'
-        break
       default:
         return 'strength'
-        break
     }
   }
 

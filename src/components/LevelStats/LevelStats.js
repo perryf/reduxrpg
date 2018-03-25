@@ -3,10 +3,6 @@ import LevelUpWrapper from '../../containers/LevelUpWrapper'
 import './LevelStats.css'
 
 class LevelStats extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidUpdate() {
     if (this.props.enemyHealth <= 0) {
       this.props.needsLevelUp()
@@ -16,15 +12,13 @@ class LevelStats extends Component {
     }
   }
 
-  fadeText(elClass) {
-    console.log(elClass)
-    let playerText = Array.from(document.querySelectorAll(elClass))
-    console.log(playerText)
-    playerText.map((el) => {
+  fadeText(className) {
+    let elements = Array.from(document.querySelectorAll(className))
+    elements.forEach((el) => {
       el.classList.remove('hide')
     })
     setTimeout(() => {
-      playerText.map((el) => {
+      elements.forEach((el) => {
         el.classList.add('hide')
       })
     }, 1000)
@@ -32,7 +26,6 @@ class LevelStats extends Component {
 
   handleAttack() {
     let playerCrit = Math.ceil(Math.random() * 6) === 6
-    let enemyCrit = Math.ceil(Math.random() * 6) === 6
     this.props.playerAttacks(
       this.props.playerAttack,
       this.props.playerStrength,
@@ -81,17 +74,23 @@ class LevelStats extends Component {
     }, 1000)
   }
 
+
   handleEnemyResponse() {
     let isSpecialing = Math.ceil(Math.random() * 4) === 4
-    let enemysMove = isSpecialing ? 
-      this.props.enemySpecials : 
-      this.props.enemyAttacks
+    // if (isSpecialing) {
     setTimeout(() => {
-      enemysMove(
-        this.props.enemyAttack,
-        this.props.enemyMagic,
-        this.props.enemyHealth
-      )
+      isSpecialing ? 
+        this.props.enemySpecials(
+          this.props.enemyAttack,
+          this.props.enemyMagic,
+          this.props.enemyHealth
+        ) :
+        this.props.enemyAttacks(
+          this.props.enemyAttack,
+          this.props.enemyStrength,
+          this.props.playerDefense,
+          this.props.enemyHealth
+        )
       this.props.enemyStartAttackPhase()
       this.fadeText('.damage-text.player-text')
       setTimeout(() => {

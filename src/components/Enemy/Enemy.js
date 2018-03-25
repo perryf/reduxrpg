@@ -2,10 +2,6 @@ import React, {Component} from 'react'
 import './Enemy.css'
 
 class Enemy extends Component {
-  constructor(props) {
-    super(props)
-  }
-
   render () {
     let percentage = 100 / this.props.maxHealth
     let attackStatus = this.props.isAttacking ? "en-attacking" : "waiting"
