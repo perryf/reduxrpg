@@ -16,20 +16,34 @@ class LevelStats extends Component {
     }
   }
 
-  enemyTextFade() {
-    let enemyText = Array.from(document.querySelectorAll('.enemy-text'))
-    enemyText.map((el) => {
-      el.classList.remove('hide')
-    })
-    setTimeout(() => {
-      enemyText.map((el) => {
-        el.classList.add('hide')
-      })
-    }, 1500)
-  }
+  // enemyTextFade() {
+  //   let enemyText = Array.from(document.querySelectorAll('.enemy-text'))
+  //   enemyText.map((el) => {
+  //     el.classList.remove('hide')
+  //   })
+  //   setTimeout(() => {
+  //     enemyText.map((el) => {
+  //       el.classList.add('hide')
+  //     })
+  //   }, 1500)
+  // }
 
-  playerTextFade() {
-    let playerText = Array.from(document.querySelectorAll('.player-text'))
+  // playerTextFade() {
+  //   let playerText = Array.from(document.querySelectorAll('.player-text'))
+  //   playerText.map((el) => {
+  //     el.classList.remove('hide')
+  //   })
+  //   setTimeout(() => {
+  //     playerText.map((el) => {
+  //       el.classList.add('hide')
+  //     })
+  //   }, 1500)
+  // }
+
+  fadeText(elClass) {
+    console.log(elClass)
+    let playerText = Array.from(document.querySelectorAll(elClass))
+    console.log(playerText)
     playerText.map((el) => {
       el.classList.remove('hide')
     })
@@ -37,11 +51,10 @@ class LevelStats extends Component {
       playerText.map((el) => {
         el.classList.add('hide')
       })
-    }, 1500)
+    }, 1000)
   }
 
   handleAttack() {
-    this.enemyTextFade()
     let playerCrit = Math.ceil(Math.random() * 6) === 6
     let enemyCrit = Math.ceil(Math.random() * 6) === 6
     this.props.playerAttacks(
@@ -53,12 +66,14 @@ class LevelStats extends Component {
     this.props.playerStartAttackPhase()
     this.handleEnemyResponse()
     setTimeout(() => {
+      this.fadeText('.damage-text.enemy-text')
+    }, 10)
+    setTimeout(() => {
       this.props.playerEndAttackPhase()
     }, 1000)
   }
 
   handleSpecial() {
-    this.enemyTextFade()
     this.props.playerSpecials(
       this.props.playerSpecial,
       this.props.playerMagic,
@@ -66,12 +81,14 @@ class LevelStats extends Component {
     ), this.props.playerStartSpecialPhase()
     this.handleEnemyResponse()
     setTimeout(() => {
+      this.fadeText('.damage-text.enemy-text')
+    }, 10)
+    setTimeout(() => {
       this.props.playerEndSpecialPhase()
     }, 1000)
   }
 
   handleHeal() {
-    this.enemyTextFade()
     this.props.playerHeals(
       this.props.playerHealth,
       this.props.playerMaxHealth,
@@ -79,6 +96,9 @@ class LevelStats extends Component {
     ), 
     this.props.playerStartHealPhase()
     this.handleEnemyResponse()
+    setTimeout(() => {
+      this.fadeText('.player-text.heal-text')
+    }, 10)
     setTimeout(() => {
       this.props.playerEndHealPhase()
     }, 1000)
@@ -93,11 +113,11 @@ class LevelStats extends Component {
           this.props.enemyMagic,
           this.props.enemyHealth
         ), 
-        this.props.enemyStartAttackPhase(),
+        this.props.enemyStartAttackPhase()
+        this.fadeText('.damage-text.player-text')
         setTimeout(() => {
           this.props.enemyEndAttackPhase()
         }, 1000)
-        this.playerTextFade()
       }, 1000)
     } else {
       setTimeout(() => {
@@ -107,11 +127,11 @@ class LevelStats extends Component {
           this.props.playerDefense,
           this.props.enemyHealth
         ), 
-        this.props.enemyStartAttackPhase(),
+        this.props.enemyStartAttackPhase()
+        this.fadeText('.damage-text.player-text')
         setTimeout(() => {
           this.props.enemyEndAttackPhase()
         }, 1000)
-        this.playerTextFade()
       }, 1000)
     }
   }
@@ -152,10 +172,10 @@ class LevelStats extends Component {
           {this.props.playerHealAmt}
         </p>) : 
       playerHealAmt = ''
-    this.props.enemyHealth <= 0 ?(
+    this.props.enemyHealth <= 0 ? (
       // this.enemyTextFade(),
       enemyFallen =
-        <p className = 'damage-text enemy-text'>
+        <p className='damage-text enemy-text'>
           {this.props.enemyName} has fallen!
         </p>) :
       enemyFallen = ''
@@ -205,11 +225,11 @@ class LevelStats extends Component {
         }
         {levelUp}
         <div className='action-text'>
-          <div className='player-text'>
+          <div className='player-text-box'>
             {playerHealAmt}
             {playerDmgTaken}
           </div>
-          <div className='enemy-text'>
+          <div className='enemy-text-box'>
             {enemyFallen}
             {enemyDmgTaken}
           </div>

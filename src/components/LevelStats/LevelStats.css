@@ -1,4 +1,5 @@
 .action-text {
+  text-align: center;
   font-size: 1em;
   /* font-family: 'Courier New', Courier, monospace; */
   display: flex;
@@ -7,36 +8,47 @@
 }
 
 .enemy-text {
+  opacity: 1;
+  margin-right: -40px;
+  margin-top: -20px;
   order: 1;
-  min-width: 50px;
+  min-width: 40px;
+  max-width: 60px;
 }
 
 .player-text {
+  opacity: 1;
+  margin-left: -50px;
+  margin-top: -20px;
   order: 0;
-  min-width: 50px;
+  min-width: 40px;
+  max-width: 60px;
 }
 
 .damage-text {
-  opacity: 1;
   color: red;
   /* animation: textfade 3s 1; */
 }
 
 .heal-text {
-  opacity: 1;
   color: green;
   /* animation: textfade 3s 1; */
 }
 
 .hide {
+  transition: 1s;
   opacity: 0;
+  transform: translateY(-30px);
+  animation: wiggle 1s infinite;
+  position: relative;
 }
 
-/* @keyframes textfade {
-  0% {opacity: 0;}
-  50% {opacity: 1;}
-  100% {opacity: 0;}
-} */
+@keyframes wiggle {
+  0% {left: 0;}
+  25% {left: 10px;}
+  50% {left: -10px;}
+  100% {left: 0;}
+}
 
 .action-buttons {
   margin: 30px 0;
@@ -44,10 +56,12 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  width: 200px;
 }
 
 .action-button {
   min-width: 80px;
+  max-width: 160px;
   font-size: 1.1em;
   margin: 6px;
 }
