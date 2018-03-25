@@ -16,30 +16,6 @@ class LevelStats extends Component {
     }
   }
 
-  // enemyTextFade() {
-  //   let enemyText = Array.from(document.querySelectorAll('.enemy-text'))
-  //   enemyText.map((el) => {
-  //     el.classList.remove('hide')
-  //   })
-  //   setTimeout(() => {
-  //     enemyText.map((el) => {
-  //       el.classList.add('hide')
-  //     })
-  //   }, 1500)
-  // }
-
-  // playerTextFade() {
-  //   let playerText = Array.from(document.querySelectorAll('.player-text'))
-  //   playerText.map((el) => {
-  //     el.classList.remove('hide')
-  //   })
-  //   setTimeout(() => {
-  //     playerText.map((el) => {
-  //       el.classList.add('hide')
-  //     })
-  //   }, 1500)
-  // }
-
   fadeText(elClass) {
     console.log(elClass)
     let playerText = Array.from(document.querySelectorAll(elClass))
@@ -62,7 +38,7 @@ class LevelStats extends Component {
       this.props.playerStrength,
       this.props.enemyDefense,
       playerCrit
-    ), 
+    )
     this.props.playerStartAttackPhase()
     this.handleEnemyResponse()
     setTimeout(() => {
@@ -78,7 +54,8 @@ class LevelStats extends Component {
       this.props.playerSpecial,
       this.props.playerMagic,
       this.props.playerLevel
-    ), this.props.playerStartSpecialPhase()
+    )
+    this.props.playerStartSpecialPhase()
     this.handleEnemyResponse()
     setTimeout(() => {
       this.fadeText('.damage-text.enemy-text')
@@ -93,7 +70,7 @@ class LevelStats extends Component {
       this.props.playerHealth,
       this.props.playerMaxHealth,
       this.props.playerMagic
-    ), 
+    )
     this.props.playerStartHealPhase()
     this.handleEnemyResponse()
     setTimeout(() => {
@@ -106,85 +83,47 @@ class LevelStats extends Component {
 
   handleEnemyResponse() {
     let isSpecialing = Math.ceil(Math.random() * 4) === 4
-    if (isSpecialing) {
+    let enemysMove = isSpecialing ? 
+      this.props.enemySpecials : 
+      this.props.enemyAttacks
+    setTimeout(() => {
+      enemysMove(
+        this.props.enemyAttack,
+        this.props.enemyMagic,
+        this.props.enemyHealth
+      )
+      this.props.enemyStartAttackPhase()
+      this.fadeText('.damage-text.player-text')
       setTimeout(() => {
-        this.props.enemySpecials(
-          this.props.enemyAttack,
-          this.props.enemyMagic,
-          this.props.enemyHealth
-        ), 
-        this.props.enemyStartAttackPhase()
-        this.fadeText('.damage-text.player-text')
-        setTimeout(() => {
-          this.props.enemyEndAttackPhase()
-        }, 1000)
+        this.props.enemyEndAttackPhase()
       }, 1000)
-    } else {
-      setTimeout(() => {
-        this.props.enemyAttacks(
-          this.props.enemyAttack,
-          this.props.enemyStrength,
-          this.props.playerDefense,
-          this.props.enemyHealth
-        ), 
-        this.props.enemyStartAttackPhase()
-        this.fadeText('.damage-text.player-text')
-        setTimeout(() => {
-          this.props.enemyEndAttackPhase()
-        }, 1000)
-      }, 1000)
-    }
+    }, 1000)
   }
 
   render() {
-    let playerHitCrit
-    let enemyDmgTaken
-    let playerDmgTaken
-    let playerHealAmt
-    let enemyFallen
-    let levelUp
-    let isDead
-    this.props.playerHitCrit ?
-      playerHitCrit = <p className='damage-text enemy-text'>Critial Hit!</p> :
-      playerHitCrit = ''
-    this.props.enemyDmgTaken ? (
-      // this.enemyTextFade(),
-      enemyDmgTaken = 
-        <div>
-          <p className='damage-text enemy-text'>
-            {this.props.enemyDmgTaken}
-          </p>
-          {playerHitCrit}
-        </div>
-      ) :
-      enemyDmgTaken = ''
-    this.props.playerDmgTaken ? (
-      // this.playerTextFade(),
-      playerDmgTaken = 
-        <p className='damage-text player-text'>
-          {this.props.playerDmgTaken}
-        </p>) :
-      playerDmgTaken = '' 
-    this.props.playerHealAmt ? (
-      // this.playerTextFade(),
-      playerHealAmt = 
-        <p className='heal-text player-text'>
-          {this.props.playerHealAmt}
-        </p>) : 
-      playerHealAmt = ''
-    this.props.enemyHealth <= 0 ? (
-      // this.enemyTextFade(),
-      enemyFallen =
-        <p className='damage-text enemy-text'>
-          {this.props.enemyName} has fallen!
-        </p>) :
-      enemyFallen = ''
-    this.props.isLevelingUp ?
-      levelUp = <LevelUpWrapper /> :
-      levelUp = null
-    this.props.playerHealth <= 0 ?
-      isDead = <h2>You are dead</h2> :
-      isDead = null
+    let playerHitCrit = this.props.playerHitCrit ?
+      <p className='damage-text enemy-text'>Critial Hit!</p> : ''
+    let enemyDmgTaken = this.props.enemyDmgTaken ? 
+      <div>
+        <p className='damage-text enemy-text'>{this.props.enemyDmgTaken}</p>
+        {playerHitCrit}
+      </div> : ''
+    let playerDmgTaken = this.props.playerDmgTaken ?
+      <p className='damage-text player-text'>
+        {this.props.playerDmgTaken}
+      </p> : '' 
+    let playerHealAmt = this.props.playerLastMove === 'heal' ?
+      <p className='heal-text player-text'>
+        {this.props.playerHealAmt}
+      </p> :  ''
+    let enemyFallen = this.props.enemyHealth <= 0 ? 
+      <p className='damage-text enemy-text'>
+        {this.props.enemyName} has fallen!
+      </p> : ''
+    let levelUp = this.props.isLevelingUp ?
+      <LevelUpWrapper /> : null
+    let isDead = this.props.playerHealth <= 0 ?
+      <h2>You are dead</h2> : null
     return (
       <div className='level-stats'>
         {isDead ?

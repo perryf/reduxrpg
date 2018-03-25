@@ -1,6 +1,6 @@
 const initialState = {
   playerDmgTaken: 0,
-  playerHealAmt: 0,
+  playerHealAmt: '',
   playerHitCrit: false,
   enemyDmgTaken: 0,
   isLevelingUp: false,
@@ -17,25 +17,29 @@ const levelStats = (state = initialState, action) => {
         return {
           ...state,
           enemyDmgTaken: action.damage,
-          playerHealAmt: 0,
+          playerHealAmt: '',
           playerHitCrit: false, 
-          enemysTurn: true
+          enemysTurn: true,
+          playerLastMove: 'attack'
         }
       } else {
         return {
           ...state,
           enemyDmgTaken: action.damage * 2,
-          playerHealAmt: 0,
+          playerHealAmt: '',
           playerHitCrit: true,
-          enemysTurn: true
+          enemysTurn: true,
+          playerLastMove: 'attack'
         }
       }
     case 'PLAYER_SPECIALS':
       return {
         ...state,
         enemyDmgTaken: action.damage,
-        playerHealAmt: 0,
-        enemysTurn: true
+        playerHealAmt: '',
+        enemysTurn: true,
+        playerHitCrit: false,
+        playerLastMove: 'special'
       }
     case 'PLAYER_HEALS':
       if (action.currentHealth + action.healAmt < action.maxHealth) {
@@ -43,27 +47,33 @@ const levelStats = (state = initialState, action) => {
           ...state,
           playerHealAmt: action.healAmt,
           enemyDmgTaken: 0,
-          enemysTurn: true
+          enemysTurn: true,
+          playerHitCrit: false,
+          playerLastMove: 'heal'
         }
       } else {
         return {
           ...state,
           playerHealAmt: action.maxHealth - action.currentHealth,
           enemyDmgTaken: 0,
-          enemysTurn: true
+          enemysTurn: true,
+          playerHitCrit: false,
+          playerLastMove: 'heal'
         }
       }
     case 'ENEMY_ATTACKS':
       return {
         ...state,
         playerDmgTaken: action.damage,
-        enemysTurn: false
+        enemysTurn: false,
+        enemyLastMove: 'attack'
       }
     case 'ENEMY_SPECIALS':
       return {
         ...state,
         playerDmgTaken: action.damage,
-        enemysTurn: false
+        enemysTurn: false,
+        enemyLastMove: 'special'
       }
     case 'NEXT_ENEMY':
       return {
@@ -79,16 +89,17 @@ const levelStats = (state = initialState, action) => {
       return {
         ...state,
         playerDmgTaken: 0,
-        playerHealAmt: 0,
+        playerHealAmt: '',
         enemyDmgTaken: 0,
+        playerHitCrit: false,
         isLevelingUp: true,
-
+        playerLastMove: null,
+        playersLastMove: null
       }
     case 'LEVEL_UP':
       return {
         ...state,
-        isLevelingUp: false,
-        playerHitCrit: false
+        isLevelingUp: false
       }
     default:
       return state
