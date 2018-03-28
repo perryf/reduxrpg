@@ -9,11 +9,6 @@ const initialState = {
   isAttacking: false,
   isSpecialing: false,
   isHealing: false,
-  // 'moves': {
-  //   'attack': 10,
-  //   'special': 10,
-  //   'heal': 50
-  // },
   moves: [
     {
       id: 0,

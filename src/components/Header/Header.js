@@ -5,7 +5,7 @@ const Header = () => {
   return(
     <div className="header">
       <h1>Redux RPG</h1>
-      <h3>made by Perry Fustero</h3>
+      <h3>made by <a href="https://github.com/perryf/reduxrpg">Perry Fustero</a></h3>
     </div>
   )
 }

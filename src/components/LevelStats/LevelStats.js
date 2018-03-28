@@ -25,7 +25,6 @@ class LevelStats extends Component {
   }
 
   handleAction(moveName) {
-    console.log(moveName)
     if (moveName === 'attack') this.handleAttack()
     if (moveName === 'magic') this.handleSpecial()
     if (moveName === 'heal') this.handleHeal()
@@ -124,53 +123,38 @@ class LevelStats extends Component {
       <p className='damage-text enemy-text'>
         {this.props.enemyName} has fallen!
       </p> : ''
-    let levelUp = this.props.isLevelingUp ?
-      <LevelUpWrapper /> : null
-    let isDead = this.props.playerHealth <= 0 ?
-      <h2>You are dead</h2> : null
     return (
       <div className='level-stats'>
-        {isDead ?
-          isDead :
-          <div>
-            {this.props.enemyHealth > 0 ?
-              <div>
-                {!this.props.enemysTurn ?
-                  <div className='action-buttons'>
-                    {this.props.moves.map(move => (
-                      this.props.playerMana > 0 || !move.mana ?
-                        <button
-                          key={move.id}
-                          className={`action-button ${move.type}-button`}
-                          onClick={() => this.handleAction(move.shortName)}
-                        >{move.name} {move.mana ? `(${move.mana} mana)` : ''}</button> : 
-                        <button 
-                          key={move.id} 
-                          className='action-button no-mana'
-                        >Out of Mana!
-                        </button>
-                    ))}
-                  </div> : 
-                  <div className='action-buttons'>
-                    {this.props.moves.map(move => (
-                      this.props.playerMana > 0 || !move.mana ?
-                        <button
-                          key={move.id}
-                          className='action-button fake-button'
-                        >{move.name} {move.mana ? `(${move.mana} mana)` : ''}</button> :
-                        <button 
-                          key={move.id} 
-                          className='action-button no-mana'
-                        >Out of Mana!
-                        </button>
-                    ))}
-                  </div>
-                }
-              </div> : <div></div>
-            }
-          </div>
+        {this.props.playerHealth <= 0 ?
+          <h2>You are dead</h2> 
+          :
+          this.props.enemyHealth > 0 ?
+            <div className='action-buttons'>
+              {this.props.moves.map(move => (
+                this.props.playerMana > 0 || !move.mana ?
+                  !this.props.enemysTurn ?
+                    <button
+                      key={move.id}
+                      className={`action-button ${move.type}-button`}
+                      onClick={() => this.handleAction(move.shortName)}
+                    >{move.name} {move.mana ? `(${move.mana} mana)` : ''}</button> 
+                    : 
+                    <button
+                      key={move.id}
+                      className='action-button fake-button'
+                    >{move.name} {move.mana ? `(${move.mana} mana)` : ''}</button> 
+                  :
+                  <button 
+                    key={move.id} 
+                    className='action-button no-mana'
+                  >Out of Mana!
+                  </button>
+              ))}
+            </div> : <div></div>
         }
-        {levelUp}
+        {this.props.isLevelingUp ?
+          <LevelUpWrapper /> : null
+        }
         <div className='action-text'>
           <div className='player-text-box'>
             {playerHealAmt}

@@ -1,6 +1,6 @@
 .header {
   font-size: 12px;
-  color: #111111;
+  color: #EEEEEE;
   text-align: center;
   cursor: default;
   margin: 0 auto;
@@ -12,6 +12,12 @@
 }
 
 .header:hover {
-  color: white;
-  transition: 1s;
+  animation: colorChange 3s infinite
+}
+
+@keyframes colorChange {
+  0% {color: goldenrod;}
+  25% {color: darkcyan;}
+  75% {color: crimson;}
+  100% {color: goldenrod;}
 }
