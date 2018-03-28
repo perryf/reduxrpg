@@ -21,16 +21,16 @@ import {
   enemyEndSpecialPhase
 } from '../actions'
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   playerName: state.player.name,
   playerDmgTaken: state.levelStats.playerDmgTaken,
   playerHealAmt: state.levelStats.playerHealAmt,
   enemyDmgTaken: state.levelStats.enemyDmgTaken,
   moves: state.player.moves,
-  playerAttack: state.player.moves.attack,
+  playerAttack: state.player.moves.find(move => move.shortName === 'attack'),
+  playerSpecial: state.player.moves.find(move => move.shortName === 'magic'),
   playerHealth: state.player.health,
   playerStrength: state.player.stats.strength,
-  playerSpecial: state.player.moves.special,
   playerDefense: state.player.stats.defense,
   playerMaxHealth: state.player.stats.maxHealth,
   playerMagic: state.player.stats.magic,

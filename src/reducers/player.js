@@ -1,54 +1,60 @@
 const initialState = {
-  'name': 'NoName McGee',
-  'img': '',
-  'imgName': '',
-  'health': 100,
-  'mana': 2,
-  'level': 0,
-  'alive': true,
-  'isAttacking': false,
-  'isSpecialing': false,
-  'isHealing': false,
-  'moves': {
-    'attack': 10,
-    'special': 10,
-    'heal': 50
-  },
-  // 'moves': [
-  //   {
-  //     'name': 'Attack',
-  //     'type': 'basic',
-  //     'amt': 10,
-  //     'mana': 0,
-  //     'preReq': {
-  //       'level': 0
-  //     }
-  //   },
-  //   {
-  //     'name': 'Magic',
-  //     'type': 'special',
-  //     'amt': 10,
-  //     'mana': 1,
-  //     'preReq': {
-  //       'level': 0
-  //     }
-  //   },
-  //   {
-  //     'name': 'Heal',
-  //     'type': 'special',
-  //     'amt': '50',
-  //     'mana': 1,
-  //     'preReq': {
-  //       'level': 0
-  //     }
-  //   }
-  // ],
-  'stats': {
-    'maxHealth': 100,
-    'strength': 1,
-    'defense': 1,
-    'magic': 1,
-    'maxMana': 2
+  name: 'NoName McGee',
+  img: '',
+  imgName: '',
+  health: 100,
+  mana: 2,
+  level: 0,
+  alive: true,
+  isAttacking: false,
+  isSpecialing: false,
+  isHealing: false,
+  // 'moves': {
+  //   'attack': 10,
+  //   'special': 10,
+  //   'heal': 50
+  // },
+  moves: [
+    {
+      id: 0,
+      name: 'Attack',
+      shortName: 'attack',
+      type: 'basic',
+      amt: 10,
+      mana: 0,
+      preReq: {
+        level: 0
+      }
+    },
+    {
+      id: 1,
+      name: 'Magic Attack',
+      shortName: 'magic',
+      type: 'special',
+      amt: 10,
+      mana: 1,
+      preReq: {
+        level: 0
+      }
+    },
+    {
+      id: 2,
+      name: 'Heal',
+      shortName: 'heal',
+      type: 'special',
+      amt: '50',
+      mana: 1,
+      preReq: {
+        level: 0
+      }
+    }
+  ],
+  stats: {
+    maxHealth: 100,
+    strength: 1,
+    defense: 1,
+    magic: 1,
+    maxMana: 2
   }
 }
 

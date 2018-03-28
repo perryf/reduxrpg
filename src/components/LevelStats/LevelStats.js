@@ -24,10 +24,17 @@ class LevelStats extends Component {
     }, 1000)
   }
 
+  handleAction(moveName) {
+    console.log(moveName)
+    if (moveName === 'attack') this.handleAttack()
+    if (moveName === 'magic') this.handleSpecial()
+    if (moveName === 'heal') this.handleHeal()
+  }
+
   handleAttack() {
     let playerCrit = Math.ceil(Math.random() * 6) === 6
     this.props.playerAttacks(
-      this.props.playerAttack,
+      this.props.playerAttack.amt,
       this.props.playerStrength,
       this.props.enemyDefense,
       playerCrit
@@ -44,7 +51,7 @@ class LevelStats extends Component {
 
   handleSpecial() {
     this.props.playerSpecials(
-      this.props.playerSpecial,
+      this.props.playerSpecial.amt,
       this.props.playerMagic,
       this.props.playerLevel
     )
@@ -73,7 +80,6 @@ class LevelStats extends Component {
       this.props.playerEndHealPhase()
     }, 1000)
   }
-
 
   handleEnemyResponse() {
     let isSpecialing = Math.ceil(Math.random() * 4) === 4
@@ -131,29 +137,33 @@ class LevelStats extends Component {
               <div>
                 {!this.props.enemysTurn ?
                   <div className='action-buttons'>
-                    <button
-                      className='action-button attack-button'
-                      onClick={() => this.handleAttack()}
-                    >Attack</button>
-                    {this.props.playerMana > 0 ?
-                      <button
-                        className='action-button special-button'
-                        onClick={() => this.handleSpecial()}
-                      >Magic Attack (1 Mana)</button> :
-                      <button className='no-mana action-button'>Out of Mana!</button>
-                    }
-                    {this.props.playerMana > 0 ?
-                      <button
-                        className='action-button special-button'
-                        onClick={() => this.handleHeal()}
-                      >Heal (1 Mana)</button> :
-                      <button className='no-mana action-button'>Out of Mana!</button>
-                    } 
+                    {this.props.moves.map(move => (
+                      this.props.playerMana > 0 || !move.mana ?
+                        <button
+                          key={move.id}
+                          className={`action-button ${move.type}-button`}
+                          onClick={() => this.handleAction(move.shortName)}
+                        >{move.name} {move.mana ? `(${move.mana} mana)` : ''}</button> : 
+                        <button 
+                          key={move.id} 
+                          className='action-button no-mana'
+                        >Out of Mana!
+                        </button>
+                    ))}
                   </div> : 
                   <div className='action-buttons'>
-                    <button className='fake-button action-button'>Attack</button>
-                    <button className='fake-button action-button'>Special Attack (1 Mana)</button>
-                    <button className='fake-button action-button'>Heal (1 Mana)</button>
+                    {this.props.moves.map(move => (
+                      this.props.playerMana > 0 || !move.mana ?
+                        <button
+                          key={move.id}
+                          className='action-button fake-button'
+                        >{move.name} {move.mana ? `(${move.mana} mana)` : ''}</button> :
+                        <button 
+                          key={move.id} 
+                          className='action-button no-mana'
+                        >Out of Mana!
+                        </button>
+                    ))}
                   </div>
                 }
               </div> : <div></div>
