@@ -7,8 +7,10 @@ This is an academic work, not intended in anyway to make a profit.  This is most
 
 Images borrowed from ...
 - https://www.mariowiki.com/
+- https://www.favicon.cc/
 - http://sonic.wikia.com/
 - https://pokemondb.net/
 - http://www.dsclab.ntua.gr/~phib/doom1.htm
 - http://s294.photobucket.com/user/Bakufuun_and_Cookie/library
+Fonts
 - https://fonts.google.com

@@ -5,6 +5,8 @@
   cursor: default;
   margin: 0 auto;
   width: 250px;
+  animation: colorChange 3s infinite linear;
+  animation-play-state: paused;
 }
 
 .header h1 {
@@ -12,12 +14,14 @@
 }
 
 .header:hover {
-  animation: colorChange 3s infinite
+  animation-play-state: running;
 }
 
 @keyframes colorChange {
-  0% {color: goldenrod;}
-  25% {color: darkcyan;}
-  75% {color: crimson;}
-  100% {color: goldenrod;}
+  0% {color: #EEEEEE;}
+  20% {color: darkcyan}
+  40% {color: goldenrod;}
+  60% {color: crimson;}
+  80% {color: lightskyblue;}
+  100% {color: #EEEEEE;}
 }
