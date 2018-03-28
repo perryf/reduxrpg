@@ -9,24 +9,17 @@ initialEnemy.counter = 0
 const enemy = (state = initialEnemy, action) => {
   switch (action.type) {
     case 'INCREASE_ENEMY_COUNTER':
-      console.log(state.counter)
       return {
         ...state,
         counter: ++state.counter
       }
     case 'PLAYER_ATTACKS':
       if (state.health >= 0) {
-        if (!action.crit) {
-          return {
-            ...state,
-            health: state.health - action.damage
-          }
-        } else {
-          return {
-            ...state,
-            health: state.health - (action.damage * 2)
-          }
-        }
+        return {
+          ...state,
+          health: action.crit ?
+            state.health - (action.damage * 2) : state.health - action.damage
+        } 
       } else {
         return state
       }

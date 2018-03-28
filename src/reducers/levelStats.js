@@ -1,3 +1,6 @@
+// state here is the view of what shows up on screen
+// see player/enemy reducer for state affecting characters
+
 const initialState = {
   playerDmgTaken: 0,
   playerHealAmt: 0,
@@ -13,24 +16,13 @@ const initialState = {
 const levelStats = (state = initialState, action) => {
   switch (action.type) {
     case 'PLAYER_ATTACKS':
-      if (!action.crit) {
-        return {
-          ...state,
-          enemyDmgTaken: action.damage,
-          playerHealAmt: 0,
-          playerHitCrit: false, 
-          enemysTurn: true,
-          playerLastMove: 'attack'
-        }
-      } else {
-        return {
-          ...state,
-          enemyDmgTaken: action.damage * 2,
-          playerHealAmt: 0,
-          playerHitCrit: true,
-          enemysTurn: true,
-          playerLastMove: 'attack'
-        }
+      return {
+        ...state,
+        enemyDmgTaken: action.crit ? action.damage * 2 : action.damage,
+        playerHealAmt: 0,
+        playerHitCrit: action.crit, 
+        enemysTurn: true,
+        playerLastMove: 'attack'
       }
     case 'PLAYER_SPECIALS':
       return {
@@ -41,26 +33,18 @@ const levelStats = (state = initialState, action) => {
         playerHitCrit: false,
         playerLastMove: 'special'
       }
-    case 'PLAYER_HEALS':
-      if (action.currentHealth + action.healAmt < action.maxHealth) {
-        return {
-          ...state,
-          playerHealAmt: action.healAmt,
-          enemyDmgTaken: 0,
-          enemysTurn: true,
-          playerHitCrit: false,
-          playerLastMove: 'heal'
-        }
-      } else {
-        return {
-          ...state,
-          playerHealAmt: action.maxHealth - action.currentHealth,
-          enemyDmgTaken: 0,
-          enemysTurn: true,
-          playerHitCrit: false,
-          playerLastMove: 'heal'
-        }
+    case 'PLAYER_HEALS': {
+      return {
+        ...state,
+        playerHealAmt: 
+          action.currentHealth + action.healAmt < action.maxHealth ?
+          action.healAmt : action.maxHealth - action.currentHealth,
+        enemyDmgTaken: 0,
+        enemysTurn: true,
+        playerHitCrit: false,
+        playerLastMove: 'heal'
       }
+    }
     case 'ENEMY_ATTACKS':
       return {
         ...state,
@@ -104,7 +88,6 @@ const levelStats = (state = initialState, action) => {
     default:
       return state
   }
-
 }
 
 export default levelStats

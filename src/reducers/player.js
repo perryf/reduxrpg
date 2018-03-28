@@ -56,14 +56,12 @@ const initialState = {
 const player = (state = initialState, action) => {
   switch (action.type) {
     case 'ENEMY_ATTACKS':
-      if (action.enemyHealth > 0) {
-        return {
-          ...state,
-          health: state.health - action.damage
-        }
-      } else {
-        return state
-      }
+      return {
+        ...state,
+        health: 
+          action.enemyHealth > 0 ?
+          state.health - action.damage : state.health
+      } 
     case 'ENEMY_SPECIALS':
       if (action.enemyHealth > 0) {
         return {
@@ -78,8 +76,7 @@ const player = (state = initialState, action) => {
         ...state,
         health: 
           action.currentHealth + action.healAmt < action.maxHealth ?
-          action.currentHealth + action.healAmt :
-          action.maxHealth,
+          action.currentHealth + action.healAmt : action.maxHealth,
         mana: state.mana - 1
       }
     case 'PLAYER_SPECIALS':
@@ -88,14 +85,13 @@ const player = (state = initialState, action) => {
         mana: state.mana - 1
       }
     case 'INTRO_SUBMIT': {
-      let name = action.name || state.name
-      let [health, statBoost] = [0, 0]
-      action.stat === 'maxHealth' ?
-        [health, statBoost] = [state.health + 20, 20] :
-        [health, statBoost] = [state.health, 1]
+      let [health, statBoost] = [state.health, 1]
+      if (action.stat === 'maxHealth') {
+        [health, statBoost] = [state.health + 20, 20]
+      }
       return {
         ...state,
-        name: name,
+        name: action.name || state.name,
         img: action.img,
         imgName: action.imgName,
         health: health,
@@ -107,15 +103,13 @@ const player = (state = initialState, action) => {
       }
     }
     case 'LEVEL_UP': {
-      let [health, statBoost] = [0, 0]
-      action.stat === 'maxHealth' ?
-        [health, statBoost] = [state.health + 20, 20] :
-        [health, statBoost] = [state.health, 1]
+      let [health, statBoost] = [state.health, 1]
+      if (action.stat === 'maxHealth') {
+        [health, statBoost] = [state.health + 20, 20]
+      }
       let mana = 
         action.stat === 'magic' && state.stats.magic % 2 === 0 ?
-        state.stats.maxMana + 1 :
-        state.stats.maxMana
-
+        state.stats.maxMana + 1 : state.stats.maxMana
       return {
         ...state,
         level: state.level + 1,

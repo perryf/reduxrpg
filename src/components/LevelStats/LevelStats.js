@@ -4,6 +4,10 @@ import './LevelStats.css'
 
 class LevelStats extends Component {
   componentDidUpdate() {
+    if (this.props.enemyName === 'winner') {
+      // this.props.youWin()
+      console.log('You win!')
+    }
     if (this.props.enemyHealth <= 0) {
       this.props.needsLevelUp()
     }
