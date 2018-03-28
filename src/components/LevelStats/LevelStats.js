@@ -77,7 +77,6 @@ class LevelStats extends Component {
 
   handleEnemyResponse() {
     let isSpecialing = Math.ceil(Math.random() * 4) === 4
-    // if (isSpecialing) {
     setTimeout(() => {
       isSpecialing ? 
         this.props.enemySpecials(
@@ -140,7 +139,7 @@ class LevelStats extends Component {
                       <button
                         className='action-button special-button'
                         onClick={() => this.handleSpecial()}
-                      >Special Attack (1 Mana)</button> :
+                      >Magic Attack (1 Mana)</button> :
                       <button className='no-mana action-button'>Out of Mana!</button>
                     }
                     {this.props.playerMana > 0 ?

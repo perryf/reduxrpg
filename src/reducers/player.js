@@ -14,6 +14,35 @@ const initialState = {
     'special': 10,
     'heal': 50
   },
+  // 'moves': [
+  //   {
+  //     'name': 'Attack',
+  //     'type': 'basic',
+  //     'amt': 10,
+  //     'mana': 0,
+  //     'preReq': {
+  //       'level': 0
+  //     }
+  //   },
+  //   {
+  //     'name': 'Magic',
+  //     'type': 'special',
+  //     'amt': 10,
+  //     'mana': 1,
+  //     'preReq': {
+  //       'level': 0
+  //     }
+  //   },
+  //   {
+  //     'name': 'Heal',
+  //     'type': 'special',
+  //     'amt': '50',
+  //     'mana': 1,
+  //     'preReq': {
+  //       'level': 0
+  //     }
+  //   }
+  // ],
   'stats': {
     'maxHealth': 100,
     'strength': 1,
