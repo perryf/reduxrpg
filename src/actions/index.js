@@ -90,7 +90,7 @@ export const needsLevelUp = () => ({
   type: 'NEEDS_LEVEL_UP'
 })
 
-export const levelUp = (statIncrease) => ({
+export const levelUp = stat => ({
   type: 'LEVEL_UP',
-  statIncrease
+  stat
 })

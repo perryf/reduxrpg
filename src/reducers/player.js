@@ -74,88 +74,60 @@ const player = (state = initialState, action) => {
         return state
       }
     case 'PLAYER_HEALS':
-      if (action.currentHealth + action.healAmt < action.maxHealth) {
-        return {
-          ...state,
-          health: action.currentHealth + action.healAmt,
-          mana: state.mana - 1
-        }
-      } else {
-        return {
-          ...state,
-          health: action.maxHealth,
-          mana: state.mana - 1
-        }
+      return {
+        ...state,
+        health: 
+          action.currentHealth + action.healAmt < action.maxHealth ?
+          action.currentHealth + action.healAmt :
+          action.maxHealth,
+        mana: state.mana - 1
       }
     case 'PLAYER_SPECIALS':
       return {
         ...state,
         mana: state.mana - 1
       }
-    case 'INTRO_SUBMIT':
-      let statInit = action.stat
+    case 'INTRO_SUBMIT': {
       let name = action.name || state.name
-      if (statInit === 'maxHealth') {
-        return {
-          ...state,
-          name: name,
-          img: action.img,
-          imgName: action.imgName,
-          health: state.health + 20,
-          level: state.level + 1,
-          stats: {
-            ...state.stats,
-            [statInit]: state.stats[statInit] + 20
-          }
-        }
-      } else {
-        return {
-          ...state,
-          name: name,
-          img: action.img,
-          imgName: action.imgName,
-          level: state.level + 1,
-          stats: {
-            ...state.stats,
-            [statInit]: state.stats[statInit] + 1
-          }
+      let [health, statBoost] = [0, 0]
+      action.stat === 'maxHealth' ?
+        [health, statBoost] = [state.health + 20, 20] :
+        [health, statBoost] = [state.health, 1]
+      return {
+        ...state,
+        name: name,
+        img: action.img,
+        imgName: action.imgName,
+        health: health,
+        level: state.level + 1,
+        stats: {
+          ...state.stats,
+          [action.stat]: state.stats[action.stat] + statBoost
         }
       }
-    case 'LEVEL_UP':
-      let stat = action.statIncrease
-      if (stat === 'maxHealth') {
-        return {
-          ...state,
-          health: state.health + 20,
-          level: state.level + 1,
-          mana: state.stats.maxMana,
-          stats: {
-            ...state.stats,
-            [stat]: state.stats[stat] + 20
-          }
-        }
-      } else if (stat === 'magic' && state.stats.magic % 2 === 0) {
-        return {
-          ...state,
-          level: state.level + 1,
-          mana: state.stats.maxMana + 1,
-          stats: {
-            ...state.stats,
-            [stat]: state.stats[stat] + 1,
-            maxMana: state.stats.maxMana + 1
-          }
-        }
-      } else {
-        return {
-          ...state,
-          level: state.level + 1,
-          mana: state.stats.maxMana,
-          stats: {
-            ...state.stats,
-            [stat]: state.stats[stat] + 1
-          }
+    }
+    case 'LEVEL_UP': {
+      let [health, statBoost] = [0, 0]
+      action.stat === 'maxHealth' ?
+        [health, statBoost] = [state.health + 20, 20] :
+        [health, statBoost] = [state.health, 1]
+      let mana = 
+        action.stat === 'magic' && state.stats.magic % 2 === 0 ?
+        state.stats.maxMana + 1 :
+        state.stats.maxMana
+
+      return {
+        ...state,
+        level: state.level + 1,
+        health: health,
+        mana: mana,
+        stats: {
+          ...state.stats,
+          [action.stat]: state.stats[action.stat] + statBoost,
+          maxMana: mana
         }
       }
+    }
     case 'PLAYER_DIES': 
       return {
         ...state,
