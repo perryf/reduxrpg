@@ -53,6 +53,7 @@ class LevelUp extends Component {
             value="Next Enemy"
             onClick={((e) => {
               this.props.levelUp(e.target.form.skills.value)
+              this.props.checkMovePreReqs()
               this.props.increaseEnemyCounter()
               this.props.nextEnemy()
             })}

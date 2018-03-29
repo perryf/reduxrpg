@@ -2,7 +2,7 @@ import {connect} from 'react-redux'
 import Player from '../components/Player/Player'
 import {playerAttacks} from '../actions'
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   name: state.player.name,
   img: state.player.img,
   imgName: state.player.imgName,

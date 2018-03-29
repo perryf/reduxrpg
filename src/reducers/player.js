@@ -1,60 +1,24 @@
-const initialState = {
-  name: 'NoName McGee',
-  img: '',
-  imgName: '',
-  health: 100,
-  mana: 2,
-  level: 0,
-  alive: true,
-  isAttacking: false,
-  isSpecialing: false,
-  isHealing: false,
-  moves: [
-    {
-      id: 0,
-      name: 'Attack',
-      shortName: 'attack',
-      type: 'basic',
-      amt: 10,
-      mana: 0,
-      preReq: {
-        level: 0
-      }
-    },
-    {
-      id: 1,
-      name: 'Magic Attack',
-      shortName: 'magic',
-      type: 'special',
-      amt: 10,
-      mana: 1,
-      preReq: {
-        level: 0
-      }
-    },
-    {
-      id: 2,
-      name: 'Heal',
-      shortName: 'heal',
-      type: 'special',
-      amt: '50',
-      mana: 1,
-      preReq: {
-        level: 0
-      }
-    }
-  ],
-  stats: {
-    maxHealth: 100,
-    strength: 1,
-    defense: 1,
-    magic: 1,
-    maxMana: 2
-  }
-}
+import {initialState} from '../playerData.js'
 
 const player = (state = initialState, action) => {
   switch (action.type) {
+    case 'CHECK_MOVE_PREREQS':
+      let newMoves = state.potentialMoves.filter(move => {
+        let key = Object.keys(move.preReqs)[0]
+        return (state.stats[key] >= move.preReqs[key])
+      })
+      let potentials = state.potentialMoves.filter(potentialMove => {
+        let booleanVal = true
+        newMoves.forEach(newMove => {
+          if (newMove === potentialMove) booleanVal = false
+        })
+        return booleanVal
+      })
+      return {
+        ...state,
+        moves: [...state.moves, ...newMoves],
+        potentialMoves: potentials
+      } 
     case 'ENEMY_ATTACKS':
       return {
         ...state,
