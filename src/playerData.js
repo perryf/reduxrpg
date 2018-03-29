@@ -53,17 +53,6 @@ export const initialState = {
   ],
   potentialMoves: [
     {
-      id: 3,
-      name: 'Magic Blast',
-      shortName: 'magicBlast',
-      type: 'special',
-      amt: 20,
-      mana: 2,
-      preReqs: {
-        magic: 2
-      }
-    }, 
-    {
       id: 4,
       name: 'Hidden Test',
       shortName: 'test',
