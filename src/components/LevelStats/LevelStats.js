@@ -3,33 +3,12 @@ import LevelUpWrapper from '../../containers/LevelUpWrapper'
 import './LevelStats.css'
 
 class LevelStats extends Component {
-
-  // componentWillUpdate() {
-  //   this.handlePreReqCheck()
-  // }
+  componentWillUpdate() {
+    if (this.props.playerHealth <= 0) this.props.playerDies()
+  }
   componentDidUpdate() {
     if (this.props.enemyName === 'winner') console.log('You win!')
     if (this.props.enemyHealth <= 0) this.props.needsLevelUp()
-    if (this.props.playerHealth <= 0) this.props.playerDies()
-  }
-
-  handlePreReqCheck() {
-    // console.log(this.props.moves)
-    // console.log(this.props.stats)
-    this.props.moves.map(move => {
-      let key = Object.keys(move.preReqs)[0]
-      // console.log(key)
-      // console.log(this.props.stats[key])
-      // console.log(move.preReqs[key])
-      if (this.props.stats[key] >= move.preReqs[key]) {
-        console.log(move.preReqs, true)
-        return true
-      } else {
-        console.log(move.preReqs, false)
-        return false
-      }
-    })
-    this.props.checkMovePreReqs()
   }
 
   fadeText(className) {
@@ -51,7 +30,7 @@ class LevelStats extends Component {
   }
 
   handleAttack() {
-    let playerCrit = Math.ceil(Math.random() * 6) === 6
+    let playerCrit = Math.ceil(Math.random() * this.props.playerHitChance) === this.props.playerHitChance
     this.props.playerAttacks(
       this.props.playerAttack.amt,
       this.props.playerStrength,

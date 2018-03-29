@@ -84,8 +84,10 @@ const player = (state = initialState, action) => {
         [health, statBoost] = [state.stats.health + 20, 20]
       }
       let mana = 
-        action.stat === 'magic' && state.stats.magic % 2 === 0 ?
+        action.stat === 'magic' && state.stats.magic % 3 === 0 ?
         state.stats.maxMana + 1 : state.stats.maxMana
+      mana = (state.stats.level + 1) % 5 === 0 ?
+        mana + 1 : mana
       return {
         ...state,
         stats: {

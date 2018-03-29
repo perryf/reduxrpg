@@ -1,7 +1,7 @@
 import React from 'react'
 import './Player.css'
 
-const Player = ({name, img, imgName, health, mana, strength, defense, magic, maxHealth, maxMana, isAttacking, isSpecialing, isHealing}) => {
+const Player = ({name, img, imgName, level, health, mana, strength, defense, magic, maxHealth, maxMana, isAttacking, isSpecialing, isHealing}) => {
   let attackStatus = isAttacking ? 'attacking' : ''
   let healStatus = isHealing ? 'healing' : ''
   let specialStatus
@@ -15,10 +15,23 @@ const Player = ({name, img, imgName, health, mana, strength, defense, magic, max
   return(
     <div className='player-container'>
       <div className='img-container'>
-        <img 
-        className={'player-image ' + attackStatus + ' ' + specialStatus + ' ' + healStatus} 
-        src={img} 
-        alt={name} />
+        {
+          imgName === 'fire' ? 
+          <div>
+            <img 
+              className={'player-image ' + attackStatus + ' ' + healStatus} 
+              src={img} 
+              alt={name} 
+            />
+            <div className={'fire-ball' + ' ' + specialStatus}></div>
+          </div>
+          : 
+          <img 
+            className={'player-image ' + attackStatus + ' ' + specialStatus + ' ' + healStatus} 
+            src={img} 
+            alt={name} 
+          />
+          }
       </div>
       <h3>{name}</h3>
       <div className='status-bar' style={{width: maxHealth + 'px'}}>
@@ -28,6 +41,7 @@ const Player = ({name, img, imgName, health, mana, strength, defense, magic, max
         <div className='player-mana' style={{width: mana * 20 + 'px'}}></div>
       </div>
       <div className='stats'>
+      <p className='stat'>Level: {level}</p>
         <p className='stat'>Strength: {strength}</p>
         <p className='stat'>Defense: {defense}</p>
         <p className='stat'>Magic: {magic}</p>
