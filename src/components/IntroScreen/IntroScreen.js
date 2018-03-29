@@ -77,8 +77,9 @@ class IntroScreen extends Component {
             this.pickCharacter(e.target.skills.value, 'stat'),
             this.pickCharacter(e.target.skills.value, 'imgName'),
             e.target.skills.value
-          )} 
-        )}>
+          )
+          this.props.checkMovePreReqs()
+        })}>
           <div className="intro-name">
             <input 
               type="text" 

@@ -7,7 +7,7 @@ const player = (state = initialState, action) => {
         let key = Object.keys(move.preReqs)[0]
         return (state.stats[key] >= move.preReqs[key])
       })
-      let potentials = state.potentialMoves.filter(potentialMove => {
+      let potentialMoves = state.potentialMoves.filter(potentialMove => {
         let booleanVal = true
         newMoves.forEach(newMove => {
           if (newMove === potentialMove) booleanVal = false
@@ -17,20 +17,26 @@ const player = (state = initialState, action) => {
       return {
         ...state,
         moves: [...state.moves, ...newMoves],
-        potentialMoves: potentials
+        potentialMoves: potentialMoves
       } 
     case 'ENEMY_ATTACKS':
       return {
         ...state,
-        health: 
-          action.enemyHealth > 0 ?
-          state.health - action.damage : state.health
+        stats: {
+          ...state.stats,
+          health: 
+            action.enemyHealth > 0 ?
+            state.stats.health - action.damage : state.stats.health
+        }
       } 
     case 'ENEMY_SPECIALS':
       if (action.enemyHealth > 0) {
         return {
           ...state,
-          health: state.health - action.damage
+          stats: {
+            ...state.stats,
+            health: state.stats.health - action.damage
+          }
         }
       } else {
         return state
@@ -38,58 +44,67 @@ const player = (state = initialState, action) => {
     case 'PLAYER_HEALS':
       return {
         ...state,
-        health: 
-          action.currentHealth + action.healAmt < action.maxHealth ?
-          action.currentHealth + action.healAmt : action.maxHealth,
-        mana: state.mana - 1
+        stats: {
+          ...state.stats,
+          health: 
+            action.currentHealth + action.healAmt < action.maxHealth ?
+            action.currentHealth + action.healAmt : action.maxHealth,
+          mana: state.stats.mana - 1
+        }
       }
     case 'PLAYER_SPECIALS':
       return {
         ...state,
-        mana: state.mana - 1
+        stats: {
+          ...state.stats,
+          mana: state.stats.mana - 1
+        }
       }
     case 'INTRO_SUBMIT': {
-      let [health, statBoost] = [state.health, 1]
+      let [health, statBoost] = [state.stats.health, 1]
       if (action.stat === 'maxHealth') {
-        [health, statBoost] = [state.health + 20, 20]
+        [health, statBoost] = [state.stats.health + 20, 20]
       }
       return {
         ...state,
         name: action.name || state.name,
         img: action.img,
         imgName: action.imgName,
-        health: health,
-        level: state.level + 1,
         stats: {
           ...state.stats,
+          level: state.stats.level + 1,
+          health: health,
           [action.stat]: state.stats[action.stat] + statBoost
         }
       }
     }
     case 'LEVEL_UP': {
-      let [health, statBoost] = [state.health, 1]
+      let [health, statBoost] = [state.stats.health, 1]
       if (action.stat === 'maxHealth') {
-        [health, statBoost] = [state.health + 20, 20]
+        [health, statBoost] = [state.stats.health + 20, 20]
       }
       let mana = 
         action.stat === 'magic' && state.stats.magic % 2 === 0 ?
         state.stats.maxMana + 1 : state.stats.maxMana
       return {
         ...state,
-        level: state.level + 1,
-        health: health,
-        mana: mana,
         stats: {
           ...state.stats,
-          [action.stat]: state.stats[action.stat] + statBoost,
-          maxMana: mana
+          level: state.stats.level + 1,
+          health: health,
+          mana: mana,
+          maxMana: mana,
+          [action.stat]: state.stats[action.stat] + statBoost
         }
       }
     }
     case 'PLAYER_DIES': 
       return {
         ...state,
-        health: 0,
+        stats: {
+          ...state.stats,
+          health: 0
+        },
         alive: false
       }
     case 'PLAYER_START_ATTACK_PHASE':
@@ -98,30 +113,30 @@ const player = (state = initialState, action) => {
         isAttacking: true
       }
     case 'PLAYER_END_ATTACK_PHASE':
-    return {
-      ...state,
-      isAttacking: false
-    }
+      return {
+        ...state,
+        isAttacking: false
+      }
     case 'PLAYER_START_SPECIAL_PHASE':
       return {
         ...state,
         isSpecialing: true
       }
     case 'PLAYER_END_SPECIAL_PHASE':
-    return {
-      ...state,
-      isSpecialing: false
-    }
+      return {
+        ...state,
+        isSpecialing: false
+      }
     case 'PLAYER_START_HEAL_PHASE':
       return {
         ...state,
         isHealing: true
       }
     case 'PLAYER_END_HEAL_PHASE':
-    return {
-      ...state,
-      isHealing: false
-    }
+      return {
+        ...state,
+        isHealing: false
+      }
     default:
       return state
   }
