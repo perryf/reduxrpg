@@ -23,7 +23,7 @@ const Player = ({name, img, imgName, level, health, mana, strength, defense, mag
               src={img} 
               alt={name} 
             />
-            <div className={'fire-ball' + ' ' + specialStatus}></div>
+            <div className={'fire-ball ' + specialStatus}></div>
           </div>
           : 
           <img 
